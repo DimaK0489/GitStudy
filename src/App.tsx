@@ -15,6 +15,9 @@ function App() {
             <div className={"app-wrapper-content"}>
                 <Route path={"/dialogs"} render={() => <Dialogs />} />
                 <Route path={"/profile"} render={() => <Profile />} />
+                {/*<Route path={"/news"} render={() => <News />} />*/}
+                {/*<Route path={"/music"} render={() => <Music />} />*/}
+                {/*<Route path={"/settings"} render={() => <Settings />} />*/}
             </div>
         </div>
         </BrowserRouter>

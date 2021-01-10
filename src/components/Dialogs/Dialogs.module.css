@@ -1,4 +1,21 @@
+/*
 .content {
     grid-area: c;
     background-color: lightskyblue;
+}*/
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialogsItems {
+    padding: 10px
+}
+.dialogsItems .active {
+    color: #ff8c00;
+}
+.messages {
+    padding: 10px;
+}
+.messages.message {
+
 }
