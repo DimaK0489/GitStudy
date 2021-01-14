@@ -1,9 +1,15 @@
 import React from "react";
 import s from "./Post.module.css";
 
-function Post(props: {
-    likesCount: number;
-    message: string; }) {
+
+type PostPropsType={
+    likesCount: number
+    message: string
+    id: number
+
+}
+
+function Post(props: PostPropsType){
     return (
         <div className={s.item}>
             <img src="https://skidka02.ru/wp-content/uploads/instagram-avatarka-razmer_31.jpg"/>
@@ -13,7 +19,7 @@ function Post(props: {
             </div>
         </div>
 
-    );
+    )
 }
 
 export default Post;
