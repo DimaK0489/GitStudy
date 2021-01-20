@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {DialogType, MessageType, PostType} from "./index";
+import {DialogType, MessageType, PostType} from "./redax/state";
 
 type AppPostType = {
     post: Array<PostType>

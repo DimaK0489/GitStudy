@@ -6,7 +6,6 @@ type PostPropsType={
     likesCount: number
     message: string
     id: number
-
 }
 
 function Post(props: PostPropsType){

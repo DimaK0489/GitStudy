@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
-import {DialogType, MessageType} from "../../index";
+import {DialogType, MessageType} from "../../redax/state";
 
 type MessagesPropsType = {
     message: string
@@ -20,8 +20,8 @@ type DialogsPropsType={
 
 function Dialogs(props:DialogsPropsType) {
 
-    let dialogsElements = props.dialogs.map( (dialog) => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messageElements = props.messages.map( (message) =><Message message={message.message}/>);
+    const dialogsElements = props.dialogs.map( (dialog) => <DialogItem name={dialog.name} id={dialog.id}/>);
+    const messageElements = props.messages.map( (message) =><Message message={message.message}/>);
 
     return (
         <div className={s.dialogs}>
