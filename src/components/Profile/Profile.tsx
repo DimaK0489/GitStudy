@@ -5,14 +5,14 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {PostType} from "../../redax/state";
 
 type ProfilePostType = {
-    post: Array<PostType>
+    posts: Array<PostType>
 }
 
 function Profile(props: ProfilePostType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.post}/>
+            <MyPosts posts={props.posts}/>
         </div>
     )
 }

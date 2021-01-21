@@ -5,12 +5,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {DialogType, MessageType, PostType} from "./redax/state";
+import {DialogType, MessageType, PostType, RootStateType} from "./redax/state";
 
 type AppPostType = {
-    post: Array<PostType>
-    dialogs: Array<DialogType>
-    messages:Array<MessageType>
+    state: RootStateType
+    // post: Array<PostType>
+    // dialogs: Array<DialogType>
+    // messages:Array<MessageType>
 }
 
 function App(props:AppPostType) {
@@ -20,8 +21,13 @@ function App(props:AppPostType) {
             <Header/>
             <Navbar/>
             <div className={"app-wrapper-content"}>
-                <Route path={"/dialogs"} render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>} />
-                <Route path={"/profile"} render={() => <Profile post={props.post}/>} />
+                <Route path={"/dialogs"}
+                       render={() => <Dialogs
+                           dialogs={props.state.dialogsPage.dialogs}
+                           messages={props.state.dialogsPage.messages}/>} />
+                <Route path={"/profile"}
+                       render={() => <Profile
+                           posts={props.state.profilePage.posts}/>} />
                 {/*<Route path={"/news"} render={() => <News />} />*/}
                 {/*<Route path={"/music"} render={() => <Music />} />*/}
                 {/*<Route path={"/settings"} render={() => <Settings />} />*/}
