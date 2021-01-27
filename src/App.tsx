@@ -5,16 +5,16 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {addMessage, addPost, DialogType, MessageType, PostType, RootStateType} from "./redax/state";
+import {changeNewText, addMessage, addPost, DialogType, MessageType, PostType, RootStateType} from "./redax/state";
 
 type AppPostType = {
     state: RootStateType
     addPost: (postText: string) => void
     addMessage: (postText: string) => void
+    changeNewText:(newText: string) => void
 }
 
 function App(props: AppPostType) {
-    debugger
     return (
         <div className="app-wrapper">
             <Header/>
@@ -23,13 +23,16 @@ function App(props: AppPostType) {
                 <Route path={"/dialogs"}
                        render={() => <Dialogs
                            dialogs={props.state.dialogsPage.dialogs}
-                           messages={props.state.dialogsPage.messages}
+                           messages={props.state.profilePage.posts}
                            addMessage={addMessage}
                            />}/>
                 <Route path={"/profile"}
-                       render={() => <Profile posts={props.state.profilePage.posts}
-                                              addPost={addPost}/>}
-                />
+                       render={() => <Profile
+                           posts={props.state.profilePage.posts}
+                           message={props.state.profilePage.messageForNewPost}
+                           addPost={props.addPost}
+                           changeNewText={changeNewText}
+                       />}/>
 
 
                 {/* <Route path={"/news"} render={() => <News />} />
