@@ -6,20 +6,27 @@ import {PostType} from "../../../redax/state";
 
 type  MyPostsPropsType = {
     posts: Array<PostType>
+    addPost: (postText:string) => void
 }
 
 function MyPosts(props: MyPostsPropsType) {
 
-    let postsElements = props.posts.map((post) => <Post id={post.id} message={post.message} likesCount={post.likesCount}/>)
+    const postsElements = props.posts.map((post) =>
+        <Post id={post.id} message={post.message} likesCount={post.likesCount} />)
+    const newPostElement = React.createRef<HTMLTextAreaElement>();
+    const addPost = () => {
+        if(newPostElement.current)
+        props.addPost(newPostElement.current.value);
+        }
     return (
         <div className={s.postBlock}>
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                     <button>Delete post</button>
                 </div>
             </div>

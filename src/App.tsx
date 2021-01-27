@@ -5,18 +5,17 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {DialogType, MessageType, PostType, RootStateType} from "./redax/state";
+import {addMessage, addPost, DialogType, MessageType, PostType, RootStateType} from "./redax/state";
 
 type AppPostType = {
     state: RootStateType
-    // post: Array<PostType>
-    // dialogs: Array<DialogType>
-    // messages:Array<MessageType>
+    addPost: (postText: string) => void
+    addMessage: (postText: string) => void
 }
 
-function App(props:AppPostType) {
+function App(props: AppPostType) {
+    debugger
     return (
-        <BrowserRouter>
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
@@ -24,16 +23,21 @@ function App(props:AppPostType) {
                 <Route path={"/dialogs"}
                        render={() => <Dialogs
                            dialogs={props.state.dialogsPage.dialogs}
-                           messages={props.state.dialogsPage.messages}/>} />
+                           messages={props.state.dialogsPage.messages}
+                           addMessage={addMessage}
+                           />}/>
                 <Route path={"/profile"}
-                       render={() => <Profile
-                           posts={props.state.profilePage.posts}/>} />
-                {/*<Route path={"/news"} render={() => <News />} />*/}
-                {/*<Route path={"/music"} render={() => <Music />} />*/}
-                {/*<Route path={"/settings"} render={() => <Settings />} />*/}
+                       render={() => <Profile posts={props.state.profilePage.posts}
+                                              addPost={addPost}/>}
+                />
+
+
+                {/* <Route path={"/news"} render={() => <News />} />
+                <Route path={"/music"} render={() => <Music />} />
+                <Route path={"/settings"} render={() => <Settings />} />
+                <Route render={ () => {props.state}}/>*/}
             </div>
         </div>
-        </BrowserRouter>
     );
 }
 

@@ -1,19 +1,22 @@
+import {renderTree} from "../render";
+import {strict} from "assert";
 
 export type PostType = {
     id: number
     message: string
     likesCount: number
 }
-
-
 export type DialogType = {
-    id:number
+    id: number
     name: string
 }
-
 export type MessageType = {
-    id:number
+    id: number
     message: string
+}
+type SidebarProps = {
+    id: number
+    name: string
 }
 
 export type RootStateType = {
@@ -23,7 +26,9 @@ export type RootStateType = {
     dialogsPage: {
         messages: Array<MessageType>,
         dialogs: Array<DialogType>,
-        sidebar: any
+    }
+    sidebar: {
+        friends: Array<SidebarProps>
     }
 }
 
@@ -54,6 +59,29 @@ export let state: RootStateType = {
             {id: 5, name: "Dimas"},
             {id: 6, name: "Maks"}
         ],
-        sidebar: {},
+    },
+    sidebar: {
+        friends: [
+            {id: 1, name: "Denis"},
+            {id: 2, name: "Lera"},
+            {id: 3, name: "Lesha"},
+        ]
     }
+}
+
+export const addPost = (postText: string) => {
+    const newPost: PostType = {
+        id: new Date().getTime(),
+        message: postText,
+        likesCount: 0
+    }
+    state.profilePage.posts.push(newPost)
+    renderTree(state)
+}
+export const addMessage = (postText: string) => {
+    const newMessage: MessageType = {
+        id: new Date().getTime(),
+        message: postText,
+    }
+    state.dialogsPage.messages.push(newMessage)
 }

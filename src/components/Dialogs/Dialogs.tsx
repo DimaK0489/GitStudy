@@ -16,12 +16,20 @@ function Message(props: MessagesPropsType) {
 type DialogsPropsType={
     dialogs: Array<DialogType>
     messages:Array<MessageType>
+    addMessage: (postText: string) => void
 }
 
 function Dialogs(props:DialogsPropsType) {
 
-    const dialogsElements = props.dialogs.map( (dialog) => <DialogItem name={dialog.name} id={dialog.id}/>);
+    const dialogsElements = props.dialogs.map( (dialog) => <DialogItem name={dialog.name} id={dialog.id} />);
     const messageElements = props.messages.map( (message) =><Message message={message.message}/>);
+
+
+    const newMassage = React.createRef<HTMLTextAreaElement>()
+    const addMessage = () => {
+        if (newMassage.current)
+            props.addMessage(newMassage.current.value)
+    }
 
     return (
         <div className={s.dialogs}>
@@ -31,7 +39,10 @@ function Dialogs(props:DialogsPropsType) {
 
             <div className={s.messages}>
                 {messageElements}
+                <textarea ref={newMassage}></textarea>
+                <button onClick={addMessage}>Add</button>
             </div>
+
         </div>
 
     );

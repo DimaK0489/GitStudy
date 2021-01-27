@@ -1,6 +1,7 @@
 .content img{
     width: 800px;
     height: 250px;
+    border-radius: 5px;
 }
 
 

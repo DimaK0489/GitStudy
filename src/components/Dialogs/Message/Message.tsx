@@ -11,5 +11,4 @@ function Message(props: MessagesPropsType) {
     );
 }
 
-
 export default Message;
