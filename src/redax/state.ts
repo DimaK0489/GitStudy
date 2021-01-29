@@ -39,9 +39,7 @@ export let state: RootStateType = {
         posts: [
             {id: v1(), message: "How are you", likesCount: 8},
             {id: v1(), message: "It is my first post", likesCount: 6},
-            {id: v1(), message: "Good night", likesCount: 10},
             {id: v1(), message: "Hello", likesCount: 12},
-            {id: v1(), message: "Good morning", likesCount: 18}
         ],
     },
     dialogsPage: {
@@ -50,8 +48,6 @@ export let state: RootStateType = {
             {id: v1(), message: "How are you"},
             {id: v1(), message: "Sorry i am latte"},
             {id: v1(), message: "React very easy"},
-            {id: v1(), message: "Good buy"},
-            {id: v1(), message: "Buy"}
         ],
         dialogs: [
             {id: 1, name: "Alena"},
