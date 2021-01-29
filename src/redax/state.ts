@@ -1,7 +1,8 @@
 import {renderTree} from "../render";
+import {v1} from "uuid";
 
 export type PostType = {
-    id: number
+    id: string
     message: string
     likesCount: number
 }
@@ -10,7 +11,7 @@ export type DialogType = {
     name: string
 }
 export type MessageType = {
-    id: number
+    id: string
     message: string
 }
 type SidebarProps = {
@@ -34,23 +35,23 @@ export type RootStateType = {
 
 export let state: RootStateType = {
     profilePage: {
-        messageForNewPost: "",
+        messageForNewPost: "it-incubator",
         posts: [
-            {id: 1, message: "How are you", likesCount: 8},
-            {id: 2, message: "It is my first post", likesCount: 6},
-            {id: 3, message: "Good night", likesCount: 10},
-            {id: 4, message: "Hello", likesCount: 12},
-            {id: 5, message: "Good morning", likesCount: 18}
+            {id: v1(), message: "How are you", likesCount: 8},
+            {id: v1(), message: "It is my first post", likesCount: 6},
+            {id: v1(), message: "Good night", likesCount: 10},
+            {id: v1(), message: "Hello", likesCount: 12},
+            {id: v1(), message: "Good morning", likesCount: 18}
         ],
     },
     dialogsPage: {
         messages: [
-            {id: 1, message: "Hello my friends"},
-            {id: 2, message: "How are you"},
-            {id: 3, message: "Sorry i am latte"},
-            {id: 4, message: "React very easy"},
-            {id: 5, message: "Good buy"},
-            {id: 6, message: "Buy"}
+            {id: v1(), message: "Hello my friends"},
+            {id: v1(), message: "How are you"},
+            {id: v1(), message: "Sorry i am latte"},
+            {id: v1(), message: "React very easy"},
+            {id: v1(), message: "Good buy"},
+            {id: v1(), message: "Buy"}
         ],
         dialogs: [
             {id: 1, name: "Alena"},
@@ -72,7 +73,7 @@ export let state: RootStateType = {
 
 export const addPost = (postText: string) => {
     const newPost: PostType = {
-        id: new Date().getTime(),
+        id: v1(),
         message: postText,
         likesCount: 0
     }
@@ -85,8 +86,10 @@ export const changeNewText = (newText: string) => {
 }
 export const addMessage = (postText: string) => {
     const newMessage: MessageType = {
-        id: new Date().getTime(),
+        id: v1(),
         message: postText,
     }
     state.dialogsPage.messages.push(newMessage)
+    renderTree(state)
+
 }

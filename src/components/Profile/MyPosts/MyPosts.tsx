@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {PostType, RootStateType} from "../../../redax/state";
+import {PostType} from "../../../redax/state";
 
 
 type  MyPostsPropsType = {
@@ -18,6 +18,7 @@ function MyPosts(props: MyPostsPropsType) {
 
     const addPost = () => {
         props.addPost(props.message);
+        props.changeNewText("")
     }
     const newTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewText(e.currentTarget.value)

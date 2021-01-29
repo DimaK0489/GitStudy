@@ -1,7 +1,7 @@
 import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {changeNewText, PostType, RootStateType} from "../../redax/state";
+import {changeNewText, PostType} from "../../redax/state";
 
 type ProfilePostType = {
     posts: Array<PostType>
