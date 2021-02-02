@@ -15,7 +15,7 @@ export type MessageType = {
     message: string
 }
 type SidebarProps = {
-    id: number
+    id: string
     name: string
 }
 
@@ -27,6 +27,7 @@ export type RootStateType = {
     dialogsPage: {
         messages: Array<MessageType>,
         dialogs: Array<DialogType>,
+        newMessages: string
     }
     sidebar: {
         friends: Array<SidebarProps>
@@ -43,11 +44,13 @@ export let state: RootStateType = {
         ],
     },
     dialogsPage: {
+        newMessages: "Hello",
         messages: [
             {id: v1(), message: "Hello my friends"},
             {id: v1(), message: "How are you"},
             {id: v1(), message: "Sorry i am latte"},
             {id: v1(), message: "React very easy"},
+            {id: v1(), message: "Good night"},
         ],
         dialogs: [
             {id: 1, name: "Alena"},
@@ -60,9 +63,9 @@ export let state: RootStateType = {
     },
     sidebar: {
         friends: [
-            {id: 1, name: "Denis"},
-            {id: 2, name: "Lera"},
-            {id: 3, name: "Lesha"},
+            {id: v1(), name: "Denis"},
+            {id: v1(), name: "Lera"},
+            {id: v1(), name: "Lesha"},
         ]
     }
 }
@@ -80,12 +83,18 @@ export const changeNewText = (newText: string) => {
     state.profilePage.messageForNewPost = newText;
     renderTree(state)
 }
-export const addMessage = (postText: string) => {
+
+
+export const addMessage = (messageText: string) => {
     const newMessage: MessageType = {
         id: v1(),
-        message: postText,
+        message: messageText,
     }
     state.dialogsPage.messages.push(newMessage)
     renderTree(state)
-
 }
+export const changeNewMessage = (newText: string) => {
+    state.dialogsPage.newMessages = newText;
+    renderTree(state)
+}
+

@@ -16,7 +16,8 @@ function Message(props: MessagesPropsType) {
 type DialogsPropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    addMessage: (postText: string) => void
+    addMessage: (messageText: string) => void
+    changeNewMessage: (newText: string) => void
 }
 
 function Dialogs(props: DialogsPropsType) {
@@ -32,6 +33,9 @@ function Dialogs(props: DialogsPropsType) {
         if (newMassage.current)
             props.addMessage(newMassage.current.value)
     }
+    const onMessageChange = () => {
+
+    }
 
     return (
         <div className={s.dialogs}>
@@ -41,14 +45,12 @@ function Dialogs(props: DialogsPropsType) {
 
             <div className={s.messages}>
                 {messageElements}
-                <textarea ref={newMassage}/>
+                <textarea onChange={onMessageChange} ref={newMassage}/>
                 <div>
                     <button onClick={addMessage}>Add</button>
                 </div>
             </div>
-
         </div>
-
     );
 }
 
