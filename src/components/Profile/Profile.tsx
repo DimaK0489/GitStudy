@@ -17,7 +17,7 @@ function Profile(props: ProfilePostType) {
             <MyPosts posts={props.posts}
                      message={props.message}
                      addPost={props.addPost}
-                     changeNewText={changeNewText}
+                     changeNewText={props.changeNewText}
             />
         </div>
     )

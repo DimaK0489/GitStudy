@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import {DialogType, MessageType} from "../../redax/state";
@@ -18,23 +18,23 @@ type DialogsPropsType = {
     messages: Array<MessageType>
     addMessage: (messageText: string) => void
     changeNewMessage: (newText: string) => void
+    dialogsPage:string
 }
 
 function Dialogs(props: DialogsPropsType) {
-
     const dialogsElements = props.dialogs.map((dialog) =>
         <DialogItem name={dialog.name} id={dialog.id}/>);
     const messageElements = props.messages.map((message) =>
         <Message message={message.message}/>);
 
 
-    const newMassage = React.createRef<HTMLTextAreaElement>()
-    const addMessage = () => {
-        if (newMassage.current)
-            props.addMessage(newMassage.current.value)
-    }
-    const onMessageChange = () => {
 
+    const addMessage = () => {
+        props.addMessage(props.dialogsPage)
+        props.changeNewMessage("")
+    }
+    const onMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewMessage(e.currentTarget.value)
     }
 
     return (
@@ -45,7 +45,7 @@ function Dialogs(props: DialogsPropsType) {
 
             <div className={s.messages}>
                 {messageElements}
-                <textarea onChange={onMessageChange} ref={newMassage}/>
+                <textarea onChange={onMessageChange} value={props.dialogsPage}/>
                 <div>
                     <button onClick={addMessage}>Add</button>
                 </div>

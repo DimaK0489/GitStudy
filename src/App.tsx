@@ -26,6 +26,7 @@ function App(props: AppPostType) {
                        render={() => <Dialogs
                            dialogs={props.state.dialogsPage.dialogs}
                            messages={props.state.dialogsPage.messages}
+                           dialogsPage={props.state.dialogsPage.newMessages}
                            addMessage={props.addMessage}
                            changeNewMessage={props.changeNewMessage}
                            />}/>
