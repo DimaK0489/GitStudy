@@ -5,13 +5,14 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {changeNewText, addMessage, addPost, DialogType, MessageType, PostType, RootStateType, changeNewMessage} from "./redax/state";
+import {StoreType,DialogType,MessageType,PostType,RootStateType,store} from "./redax/state";
 
 
 type AppPostType = {
+    store: StoreType
     state: RootStateType
     addPost: (postText: string) => void
-    changeNewText:(newText: string) => void
+    changeNewText: (newText: string) => void
     addMessage: (messageText: string) => void
     changeNewMessage: (newText: string) => void
 }
@@ -20,22 +21,22 @@ function App(props: AppPostType) {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar />
+            <Navbar/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/dialogs"}
                        render={() => <Dialogs
                            dialogs={props.state.dialogsPage.dialogs}
                            messages={props.state.dialogsPage.messages}
                            dialogsPage={props.state.dialogsPage.newMessages}
-                           addMessage={props.addMessage}
-                           changeNewMessage={props.changeNewMessage}
-                           />}/>
+                           addMessage={props.store.addMessage.bind(props.store)}
+                           changeNewMessage={props.store.changeNewMessage.bind(props.store)}
+                       />}/>
                 <Route path={"/profile"}
                        render={() => <Profile
                            posts={props.state.profilePage.posts}
                            message={props.state.profilePage.messageForNewPost}
-                           addPost={props.addPost}
-                           changeNewText={changeNewText}
+                           addPost={props.store.addPost.bind(props.store)}
+                           changeNewText={props.store.changeNewText.bind(props.store)}
                        />}/>
 
 

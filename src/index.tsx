@@ -1,23 +1,23 @@
 import React from 'react';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
-import {addMessage, addPost, changeNewMessage, changeNewText, state, subscribe} from "./redax/state"
+import {store} from "./redax/state"
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
 
 export const renderTree = () => {
-    ReactDOM.render(<BrowserRouter><App state={state}
-                                        addPost={addPost}
-                                        changeNewText={changeNewText}
-                                        addMessage={addMessage}
-                                        changeNewMessage={changeNewMessage}
+    ReactDOM.render(<BrowserRouter><App store={store}
+                                        state={store._state}
+                                        addPost={store.addPost.bind(store)}
+                                        changeNewText={store.changeNewText.bind(store)}
+                                        addMessage={store.addMessage.bind(store)}
+                                        changeNewMessage={store.changeNewMessage.bind(store)}
     />
     </BrowserRouter>, document.getElementById('root'));
 }
 renderTree();
-subscribe(renderTree)
+store.subscribe(renderTree)
 
 
 
