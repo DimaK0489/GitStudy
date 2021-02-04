@@ -1,5 +1,11 @@
-import {renderTree} from "../render";
 import {v1} from "uuid";
+
+let renderTree = () => {
+    console.log("state ")
+}
+export const subscribe = (observer: () => void) => {
+    renderTree = observer
+}
 
 export type PostType = {
     id: string
@@ -77,11 +83,11 @@ export const addPost = (postText: string) => {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
-    renderTree(state)
+    renderTree()
 }
 export const changeNewText = (newText: string) => {
     state.profilePage.messageForNewPost = newText;
-    renderTree(state)
+    renderTree()
 }
 
 
@@ -91,10 +97,11 @@ export const addMessage = (messageText: string) => {
         message: messageText,
     }
     state.dialogsPage.messages.push(newMessage)
-    renderTree(state)
+    renderTree()
 }
 export const changeNewMessage = (newText: string) => {
     state.dialogsPage.newMessages = newText;
-    renderTree(state)
+    renderTree()
 }
+
 
