@@ -6,6 +6,9 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
 import {StoreType,DialogType,MessageType,PostType,RootStateType,store} from "./redax/state";
+import { News } from './components/News/News';
+import { Music } from './components/Music/News';
+import { Settings } from './components/Settings/News';
 
 
 type AppPostType = {
@@ -38,6 +41,9 @@ function App(props: AppPostType) {
                            addPost={props.store.addPost.bind(props.store)}
                            changeNewText={props.store.changeNewText.bind(props.store)}
                        />}/>
+                <Route path={"/news"} render={() => <News />} />
+                <Route path={"/music"} render={() => <Music />} />
+                <Route path={"/settings"} render={() => <Settings />} />
 
 
                 {/* <Route path={"/news"} render={() => <News />} />
