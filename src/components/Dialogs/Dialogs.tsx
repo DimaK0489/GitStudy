@@ -2,16 +2,8 @@ import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import {DialogType, MessageType} from "../../redax/state";
+import Message from "./Message/Message";
 
-type MessagesPropsType = {
-    message: string
-}
-
-function Message(props: MessagesPropsType) {
-    return (
-        <div className={s.dialog}>{props.message}</div>
-    );
-}
 
 type DialogsPropsType = {
     dialogs: Array<DialogType>
@@ -27,8 +19,6 @@ function Dialogs(props: DialogsPropsType) {
     const messageElements = props.messages.map((message) =>
         <Message message={message.message}/>);
 
-
-
     const addMessage = () => {
         props.addMessage(props.dialogsPage)
         props.changeNewMessage("")
@@ -36,7 +26,6 @@ function Dialogs(props: DialogsPropsType) {
     const onMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewMessage(e.currentTarget.value)
     }
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
