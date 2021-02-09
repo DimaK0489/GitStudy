@@ -11,3 +11,11 @@
 .item a.activeLink{
     color: black;
 }
+.sidebar{
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    margin: 140px 10px 10px ;
+    background-color: deepskyblue;
+
+}

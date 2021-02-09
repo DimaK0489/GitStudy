@@ -1,11 +1,13 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from "./Navbar.module.css";
+import {SidebarProps} from "../../redax/state";
 
+type NavbarPropsType = {
+    friends: Array<SidebarProps>
+}
 
-
-
-function Navbar() {
+function Navbar(props: NavbarPropsType) {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
@@ -23,7 +25,9 @@ function Navbar() {
             <div className={s.item}>
                 <NavLink to={"/settings"} activeClassName={s.activeLink}>Settings</NavLink>
             </div>
-
+            <div className={s.sidebar}>
+                {props.friends.map(t => t.name)}
+            </div>
         </nav>
 
     );

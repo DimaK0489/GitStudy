@@ -24,7 +24,7 @@ function App(props: AppPostType) {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar/>
+            <Navbar friends={props.state.sidebar.friends}/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/dialogs"}
                        render={() => <Dialogs
@@ -45,11 +45,6 @@ function App(props: AppPostType) {
                 <Route path={"/music"} render={() => <Music />} />
                 <Route path={"/settings"} render={() => <Settings />} />
 
-
-                {/* <Route path={"/news"} render={() => <News />} />
-                <Route path={"/music"} render={() => <Music />} />
-                <Route path={"/settings"} render={() => <Settings />} />
-                <Route render={ () => {props.state}}/>*/}
             </div>
         </div>
     );
