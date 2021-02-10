@@ -8,8 +8,8 @@ import Message from "./Message/Message";
 type DialogsPropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    addMessage: (messageText: string) => void
-    changeNewMessage: (newText: string) => void
+    // addMessage: (messageText: string) => void
+    // changeNewMessage: (newText: string) => void
     dialogsPage:string
     dispatch: (action: ActionsType) => void
 }
@@ -24,7 +24,7 @@ function Dialogs(props: DialogsPropsType) {
         props.dispatch({type: "ADD-MESSAGE", messageText: props.dialogsPage})
     }
     const onMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "CHANGE-NEW-MESSAGE", newText: props.dialogsPage})
+        props.dispatch({type: "CHANGE-NEW-MESSAGE", newText: e.currentTarget.value})
     }
     return (
         <div className={s.dialogs}>

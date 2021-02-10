@@ -6,9 +6,9 @@ import {access} from "fs";
 
 type ProfilePostType = {
     posts: Array<PostType>
-    addPost: (postText: string) => void
+    // addPost: (postText: string) => void
     message: string
-    changeNewText:(newText: string) => void
+    // changeNewText:(newText: string) => void
     dispatch: (action: ActionsType) => void
 }
 
@@ -19,8 +19,6 @@ function Profile(props: ProfilePostType) {
             <MyPosts posts={props.posts}
                      message={props.message}
                      dispatch={props.dispatch}
-                     addPost={props.addPost}
-                     changeNewText={props.changeNewText}
             />
         </div>
     )

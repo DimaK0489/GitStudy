@@ -6,13 +6,7 @@ import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
 export const renderTree = () => {
-    ReactDOM.render(<BrowserRouter><App store={store}
-                                        state={store._state}
-                                        addPost={store.addPost.bind(store)}
-                                        changeNewText={store.changeNewText.bind(store)}
-                                        addMessage={store.addMessage.bind(store)}
-                                        changeNewMessage={store.changeNewMessage.bind(store)}
-    />
+    ReactDOM.render(<BrowserRouter><App store={store} state={store.getState()}/>
     </BrowserRouter>, document.getElementById('root'));
 }
 renderTree();

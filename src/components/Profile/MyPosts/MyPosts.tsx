@@ -6,9 +6,9 @@ import {ActionsType, AddPostActionType, ChangeNewTextActionType, PostType} from 
 
 type  MyPostsPropsType = {
     posts: Array<PostType>
-    addPost: (postText: string) => void
+    // addPost: (postText: string) => void
     message: string
-    changeNewText: (newText: string) => void
+    // changeNewText: (newText: string) => void
     dispatch: (action: ActionsType) => void
 }
 
@@ -19,11 +19,11 @@ function MyPosts(props: MyPostsPropsType) {
 
     const addPost = () => {
         props.dispatch({type: "ADD-POST", postText: props.message})
-        props.changeNewText("")
+        props.dispatch({type: "CHANGE-NEW-TEXT", newText: ""})
     }
     const newTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewText(e.currentTarget.value)
-        props.dispatch({type: "CHANGE-NEW-TEXT", newText: props.message})
+        // props.changeNewText(e.currentTarget.value)
+        props.dispatch({type: "CHANGE-NEW-TEXT", newText: e.currentTarget.value})
     }
 
     return (

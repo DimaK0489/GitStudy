@@ -14,10 +14,10 @@ import { Settings } from './components/Settings/News';
 type AppPropsType = {
     store: StoreType
     state: RootStateType
-    addPost: (postText: string) => void
-    changeNewText: (newText: string) => void
-    addMessage: (messageText: string) => void
-    changeNewMessage: (newText: string) => void
+    // addPost: (postText: string) => void
+    // changeNewText: (newText: string) => void
+    // addMessage: (messageText: string) => void
+    // changeNewMessage: (newText: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -32,16 +32,12 @@ function App(props: AppPropsType) {
                            messages={props.state.dialogsPage.messages}
                            dialogsPage={props.state.dialogsPage.newMessages}
                            dispatch ={props.store.dispatch.bind(props.store)}
-                           addMessage={props.store.addMessage.bind(props.store)}
-                           changeNewMessage={props.store.changeNewMessage.bind(props.store)}
                        />}/>
                 <Route path={"/profile"}
                        render={() => <Profile
                            posts={props.state.profilePage.posts}
                            message={props.state.profilePage.messageForNewPost}
                            dispatch ={props.store.dispatch.bind(props.store)}
-                           addPost={props.store.addPost.bind(props.store)}
-                           changeNewText={props.store.changeNewText.bind(props.store)}
                        />}/>
                 <Route path={"/news"} render={() => <News />} />
                 <Route path={"/music"} render={() => <Music />} />
