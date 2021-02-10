@@ -1,7 +1,6 @@
 import {v1} from "uuid";
 import {renderTree} from "../index";
 
-
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -39,49 +38,45 @@ export const store: StoreType = {
         }
     },
     _renderTree() {
-        console.log("state ")
-    },
-    addPost(postText: string) {
-        const newPost: PostType = {
-            id: v1(),
-            message: postText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        renderTree()
-    },
-    changeNewText(newText: string){
-        this._state.profilePage.messageForNewPost = newText;
-        renderTree()
-    },
-    addMessage(messageText: string){
-        const newMessage: MessageType = {
-            id: v1(),
-            message: messageText,
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        renderTree()
-    },
-    changeNewMessage(newText: string){
-        this._state.dialogsPage.newMessages = newText;
-        renderTree()
+        console.log("State changed")
     },
     subscribe(observer){
         this._renderTree = observer
     },
     getState() {
         return this._state
+    },
+    dispatch(action){
+        if(action.type === "ADD-POST"){
+            const newPost: PostType = {
+                id: v1(),
+                message: action.postText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            renderTree()
+        }else if (action.type === "CHANGE-NEW-TEXT"){
+            this._state.profilePage.messageForNewPost = action.newText;
+            renderTree()
+        }else if (action.type === "ADD-MESSAGE"){
+            const newMessage: MessageType = {
+                id: v1(),
+                message: action.messageText,
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            renderTree()
+        }else if (action.type === "CHANGE-NEW-MESSAGE"){
+            this._state.dialogsPage.newMessages = action.newText;
+            renderTree()
+        }
     }
 }
 export type StoreType = {
     _state:RootStateType
-    changeNewText:(newText:string) => void
-    addPost: (postText: string) => void
-    addMessage:(messageText: string) => void
-    changeNewMessage:(newText: string) => void
     _renderTree: () => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: ActionsType) => void
 }
 export type PostType = {
     id: string
@@ -114,6 +109,24 @@ export type RootStateType = {
         friends: Array<SidebarProps>
     }
 }
+export type AddPostActionType = {
+    type: "ADD-POST"
+    postText: string
+}
+export type ChangeNewTextActionType = {
+    type: "CHANGE-NEW-TEXT"
+    newText: string
+}
+export type AddMessageActionType = {
+    type: "ADD-MESSAGE"
+    messageText: string
+}
+export type ChangeNewMessageActionType = {
+    type: "CHANGE-NEW-MESSAGE"
+    newText: string
+}
+export type ActionsType = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType
+
 
 
 

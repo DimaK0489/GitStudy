@@ -11,7 +11,7 @@ import { Music } from './components/Music/News';
 import { Settings } from './components/Settings/News';
 
 
-type AppPostType = {
+type AppPropsType = {
     store: StoreType
     state: RootStateType
     addPost: (postText: string) => void
@@ -20,7 +20,7 @@ type AppPostType = {
     changeNewMessage: (newText: string) => void
 }
 
-function App(props: AppPostType) {
+function App(props: AppPropsType) {
     return (
         <div className="app-wrapper">
             <Header/>
@@ -31,6 +31,7 @@ function App(props: AppPostType) {
                            dialogs={props.state.dialogsPage.dialogs}
                            messages={props.state.dialogsPage.messages}
                            dialogsPage={props.state.dialogsPage.newMessages}
+                           dispatch ={props.store.dispatch.bind(props.store)}
                            addMessage={props.store.addMessage.bind(props.store)}
                            changeNewMessage={props.store.changeNewMessage.bind(props.store)}
                        />}/>
@@ -38,6 +39,7 @@ function App(props: AppPostType) {
                        render={() => <Profile
                            posts={props.state.profilePage.posts}
                            message={props.state.profilePage.messageForNewPost}
+                           dispatch ={props.store.dispatch.bind(props.store)}
                            addPost={props.store.addPost.bind(props.store)}
                            changeNewText={props.store.changeNewText.bind(props.store)}
                        />}/>

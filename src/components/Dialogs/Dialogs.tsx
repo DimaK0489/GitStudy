@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
-import {DialogType, MessageType} from "../../redax/state";
+import {ActionsType, DialogType, MessageType} from "../../redax/state";
 import Message from "./Message/Message";
 
 
@@ -11,6 +11,7 @@ type DialogsPropsType = {
     addMessage: (messageText: string) => void
     changeNewMessage: (newText: string) => void
     dialogsPage:string
+    dispatch: (action: ActionsType) => void
 }
 
 function Dialogs(props: DialogsPropsType) {
@@ -20,11 +21,10 @@ function Dialogs(props: DialogsPropsType) {
         <Message message={message.message}/>);
 
     const addMessage = () => {
-        props.addMessage(props.dialogsPage)
-        props.changeNewMessage("")
+        props.dispatch({type: "ADD-MESSAGE", messageText: props.dialogsPage})
     }
     const onMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewMessage(e.currentTarget.value)
+        props.dispatch({type: "CHANGE-NEW-MESSAGE", newText: props.dialogsPage})
     }
     return (
         <div className={s.dialogs}>
