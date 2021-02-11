@@ -25,7 +25,7 @@ export const store: StoreType = {
             ],
         },
         dialogsPage: {
-            newMessages: "Hello",
+            newMessagesText: "Hello",
             messages: [
                 {id: v1(), message: "Hello my friends"},
                 {id: v1(), message: "How are you"},
@@ -79,7 +79,7 @@ export const store: StoreType = {
             this._state.dialogsPage.messages.push(newMessage)
             renderTree()
         } else if (action.type === "CHANGE-NEW-MESSAGE") {
-            this._state.dialogsPage.newMessages = action.newText;
+            this._state.dialogsPage.newMessagesText = action.newText;
             renderTree()
         }
     }
@@ -116,7 +116,7 @@ export type RootStateType = {
     dialogsPage: {
         messages: Array<MessageType>,
         dialogs: Array<DialogType>,
-        newMessages: string
+        newMessagesText: string
     }
     sidebar: {
         friends: Array<SidebarProps>
