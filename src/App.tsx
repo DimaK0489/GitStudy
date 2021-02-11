@@ -14,10 +14,6 @@ import { Settings } from './components/Settings/News';
 type AppPropsType = {
     store: StoreType
     state: RootStateType
-    // addPost: (postText: string) => void
-    // changeNewText: (newText: string) => void
-    // addMessage: (messageText: string) => void
-    // changeNewMessage: (newText: string) => void
 }
 
 function App(props: AppPropsType) {

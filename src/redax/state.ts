@@ -45,8 +45,8 @@ export const store: StoreType = {
         sidebar: {
             friends: [
                 {id: v1(), name: "Denis"},
-                {id: v1(), name: "Lera"},
-                {id: v1(), name: "Lesha"},
+                {id: v1(), name: "Oleg"},
+                {id: v1(), name: "Anna"},
             ]
         }
     },
