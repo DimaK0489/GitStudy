@@ -1,6 +1,18 @@
 import {v1} from "uuid";
 import {renderTree} from "../index";
 
+export const addPostAC = (postText: string): AddPostActionType => {
+    return{
+        type: "ADD-POST", postText: postText
+    }
+}
+
+export const addMessageAC = (messageText: string): AddMessageActionType => {
+    return{
+        type: "ADD-MESSAGE", messageText: messageText
+    }
+}
+
 export const store: StoreType = {
     _state: {
         profilePage: {

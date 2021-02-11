@@ -6,9 +6,7 @@ import {access} from "fs";
 
 type ProfilePostType = {
     posts: Array<PostType>
-    // addPost: (postText: string) => void
     message: string
-    // changeNewText:(newText: string) => void
     dispatch: (action: ActionsType) => void
 }
 
