@@ -25,7 +25,7 @@ export const store: StoreType = {
             ],
         },
         dialogsPage: {
-            newMessagesText: "Hello",
+            newMessagesText: "Enter your message",
             messages: [
                 {id: v1(), message: "Hello my friends"},
                 {id: v1(), message: "How are you"},

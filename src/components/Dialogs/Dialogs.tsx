@@ -35,7 +35,7 @@ function Dialogs(props: DialogsPropsType) {
                 {messageElements}
                 <textarea onChange={onMessageChange} value={props.dialogsPage}/>
                 <div>
-                    <button onClick={addMessage}>Add</button>
+                    <button onClick={addMessage}>Send</button>
                 </div>
             </div>
         </div>
