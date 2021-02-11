@@ -1,16 +1,17 @@
 import {v1} from "uuid";
 import {renderTree} from "../index";
 
-export const addPostAC = (postText: string): AddPostActionType => {
-    return{
-        type: "ADD-POST", postText: postText
-    }
+export const addPostAC = (postText: string) => {
+    return {type: "ADD-POST", postText: postText} as const
 }
-
-export const addMessageAC = (messageText: string): AddMessageActionType => {
-    return{
-        type: "ADD-MESSAGE", messageText: messageText
-    }
+export const newTextChangeAC = (newText: string) => {
+    return {type: "CHANGE-NEW-TEXT", newText: newText} as const
+}
+export const addMessageAC = (messageText: string) => {
+    return {type: "ADD-MESSAGE", messageText: messageText} as const
+}
+export const onMessageChangeAC = (newText: string) => {
+    return {type: "CHANGE-NEW-MESSAGE", newText: newText} as const
 }
 
 export const store: StoreType = {
@@ -52,14 +53,14 @@ export const store: StoreType = {
     _renderTree() {
         console.log("State changed")
     },
-    subscribe(observer){
+    subscribe(observer) {
         this._renderTree = observer
     },
     getState() {
         return this._state
     },
-    dispatch(action){
-        if(action.type === "ADD-POST"){
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
             const newPost: PostType = {
                 id: v1(),
                 message: action.postText,
@@ -67,24 +68,24 @@ export const store: StoreType = {
             }
             this._state.profilePage.posts.push(newPost)
             renderTree()
-        }else if (action.type === "CHANGE-NEW-TEXT"){
+        } else if (action.type === "CHANGE-NEW-TEXT") {
             this._state.profilePage.messageForNewPost = action.newText;
             renderTree()
-        }else if (action.type === "ADD-MESSAGE"){
+        } else if (action.type === "ADD-MESSAGE") {
             const newMessage: MessageType = {
                 id: v1(),
                 message: action.messageText,
             }
             this._state.dialogsPage.messages.push(newMessage)
             renderTree()
-        }else if (action.type === "CHANGE-NEW-MESSAGE"){
+        } else if (action.type === "CHANGE-NEW-MESSAGE") {
             this._state.dialogsPage.newMessages = action.newText;
             renderTree()
         }
     }
 }
 export type StoreType = {
-    _state:RootStateType
+    _state: RootStateType
     _renderTree: () => void
     subscribe: (observer: () => void) => void
     getState: () => RootStateType
@@ -121,23 +122,11 @@ export type RootStateType = {
         friends: Array<SidebarProps>
     }
 }
-export type AddPostActionType = {
-    type: "ADD-POST"
-    postText: string
-}
-export type ChangeNewTextActionType = {
-    type: "CHANGE-NEW-TEXT"
-    newText: string
-}
-export type AddMessageActionType = {
-    type: "ADD-MESSAGE"
-    messageText: string
-}
-export type ChangeNewMessageActionType = {
-    type: "CHANGE-NEW-MESSAGE"
-    newText: string
-}
-export type ActionsType = AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType
+export type ActionsType =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof newTextChangeAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof onMessageChangeAC>
 
 
 

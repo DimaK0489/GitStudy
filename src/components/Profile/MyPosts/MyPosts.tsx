@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {ActionsType, addPostAC, PostType} from "../../../redax/state";
+import {ActionsType, addPostAC, newTextChangeAC, PostType} from "../../../redax/state";
 
 
 type  MyPostsPropsType = {
@@ -18,10 +18,10 @@ function MyPosts(props: MyPostsPropsType) {
 
     const addPost = () => {
         props.dispatch(addPostAC(props.message))
-        props.dispatch({type: "CHANGE-NEW-TEXT", newText: ""})
+        props.dispatch(newTextChangeAC(" "))
     }
     const newTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "CHANGE-NEW-TEXT", newText: e.currentTarget.value})
+        props.dispatch(newTextChangeAC(e.currentTarget.value))
     }
 
     return (
