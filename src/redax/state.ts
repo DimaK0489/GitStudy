@@ -45,13 +45,13 @@ export const store: StoreType = {
     subscribe(observer) {
         this._renderTree = observer
     },
-    getState() {
+    getState(): RootStateType {
         return this._state
     },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+    dispatch(action: ActionsType) {
+        this.getState().profilePage = profileReducer(this.getState().profilePage, action)
+        this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
+        this.getState().sidebar = sidebarReducer(this.getState().sidebar, action)
     }
 }
 export type StoreType = {
@@ -78,19 +78,23 @@ export type SidebarProps = {
     id: string
     name: string
 }
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+    messageForNewPost: string
+}
+export type DialogsPageType = {
+    messages: Array<MessageType>,
+    dialogs: Array<DialogType>,
+    newMessagesText: string
+}
+export type SidebarPropsType = {
+    friends: Array<SidebarProps>
+}
 export type RootStateType = {
-    profilePage: {
-        posts: Array<PostType>
-        messageForNewPost: string
-    }
-    dialogsPage: {
-        messages: Array<MessageType>,
-        dialogs: Array<DialogType>,
-        newMessagesText: string
-    }
-    sidebar: {
-        friends: Array<SidebarProps>
-    }
+    profilePage:ProfilePageType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarPropsType
 }
 export type ActionsType =
     ReturnType<typeof addPostAC>
