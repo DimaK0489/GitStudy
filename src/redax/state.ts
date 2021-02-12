@@ -1,18 +1,7 @@
 import {v1} from "uuid";
-import {renderTree} from "../index";
-
-export const addPostAC = (postText: string) => {
-    return {type: "ADD-POST", postText: postText} as const
-}
-export const newTextChangeAC = (newText: string) => {
-    return {type: "CHANGE-NEW-TEXT", newText: newText} as const
-}
-export const addMessageAC = (messageText: string) => {
-    return {type: "ADD-MESSAGE", messageText: messageText} as const
-}
-export const onMessageChangeAC = (newText: string) => {
-    return {type: "CHANGE-NEW-MESSAGE", newText: newText} as const
-}
+import {addPostAC, newTextChangeAC, profileReducer} from "./profile-reducer";
+import {addMessageAC, dialogsReducer, onMessageChangeAC} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 export const store: StoreType = {
     _state: {
@@ -60,28 +49,9 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            const newPost: PostType = {
-                id: v1(),
-                message: action.postText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            renderTree()
-        } else if (action.type === "CHANGE-NEW-TEXT") {
-            this._state.profilePage.messageForNewPost = action.newText;
-            renderTree()
-        } else if (action.type === "ADD-MESSAGE") {
-            const newMessage: MessageType = {
-                id: v1(),
-                message: action.messageText,
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            renderTree()
-        } else if (action.type === "CHANGE-NEW-MESSAGE") {
-            this._state.dialogsPage.newMessagesText = action.newText;
-            renderTree()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
     }
 }
 export type StoreType = {
