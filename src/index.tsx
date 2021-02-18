@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import {store} from "./redax/state"
+import {store} from "./redax/redax-store"
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";

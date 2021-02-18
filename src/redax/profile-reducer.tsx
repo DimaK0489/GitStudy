@@ -12,9 +12,8 @@ export const newTextChangeAC = (newText: string) => {
     return {type: CHANGE_NEW_TEXT, newText: newText} as const
 }
 
-
 export const profileReducer = (state: ProfilePageType, action: ActionsType): ProfilePageType => {
-    switch (action.type ) {
+    switch (action.type) {
         case "ADD-POST":
             const newPost: PostType = {
                 id: v1(),
