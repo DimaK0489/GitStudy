@@ -1,5 +1,14 @@
-import {ActionsType, RootStateType, SidebarPropsType} from "./store";
+import {ActionsType, SidebarPropsType} from "./store";
+import {v1} from "uuid";
 
-export const sidebarReducer = (state: SidebarPropsType, action: ActionsType) => {
+let initialState = {
+    friends: [
+        {id: v1(), name: "Denis"},
+        {id: v1(), name: "Oleg"},
+        {id: v1(), name: "Anna"},
+    ]
+}
+
+export const sidebarReducer = (state = initialState, action: ActionsType): SidebarPropsType => {
     return state
 }

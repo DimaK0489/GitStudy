@@ -9,11 +9,12 @@ import {StoreType, DialogType, MessageType, PostType, RootStateType, store} from
 import {News} from './components/News/News';
 import {Music} from './components/Music/News';
 import {Settings} from './components/Settings/News';
+import {ReduxStateType, ReduxStoreType } from './redax/redax-store';
 
 
 type AppPropsType = {
-    store: StoreType
-    state: RootStateType
+    store: ReduxStoreType
+    state: ReduxStateType
 }
 
 function App(props: AppPropsType) {
