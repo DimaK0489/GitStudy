@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from "./Navbar.module.css";
-import {SidebarProps} from "../../redax/state";
+import {SidebarProps} from "../../redax/store";
 
 type NavbarPropsType = {
     friends: Array<SidebarProps>

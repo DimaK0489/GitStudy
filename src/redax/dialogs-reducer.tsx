@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {renderTree} from "../index";
-import {ActionsType, DialogsPageType, MessageType, RootStateType} from "./state";
+import {ActionsType, DialogsPageType, MessageType, RootStateType} from "./store";
 
 const ADD_MESSAGE = "ADD-MESSAGE"
 const CHANGE_NEW_MESSAGE = "CHANGE-NEW-MESSAGE"

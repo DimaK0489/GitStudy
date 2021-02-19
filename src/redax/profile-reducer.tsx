@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {renderTree} from "../index";
-import {ActionsType, PostType, ProfilePageType, RootStateType} from "./state";
+import {ActionsType, PostType, ProfilePageType, RootStateType} from "./store";
 
 const ADD_POST = "ADD-POST"
 const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT"

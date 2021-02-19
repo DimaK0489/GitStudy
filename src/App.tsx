@@ -5,10 +5,10 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {StoreType,DialogType,MessageType,PostType,RootStateType,store} from "./redax/state";
-import { News } from './components/News/News';
-import { Music } from './components/Music/News';
-import { Settings } from './components/Settings/News';
+import {StoreType, DialogType, MessageType, PostType, RootStateType, store} from "./redax/store";
+import {News} from './components/News/News';
+import {Music} from './components/Music/News';
+import {Settings} from './components/Settings/News';
 
 
 type AppPropsType = {
@@ -27,17 +27,17 @@ function App(props: AppPropsType) {
                            dialogs={props.state.dialogsPage.dialogs}
                            messages={props.state.dialogsPage.messages}
                            dialogsPage={props.state.dialogsPage.newMessagesText}
-                           dispatch ={props.store.dispatch.bind(props.store)}
+                           dispatch={props.store.dispatch.bind(props.store)}
                        />}/>
                 <Route path={"/profile"}
                        render={() => <Profile
                            posts={props.state.profilePage.posts}
                            message={props.state.profilePage.messageForNewPost}
-                             dispatch ={props.store.dispatch.bind(props.store)}
+                           dispatch={props.store.dispatch.bind(props.store)}
                        />}/>
-                <Route path={"/news"} render={() => <News />} />
-                <Route path={"/music"} render={() => <Music />} />
-                <Route path={"/settings"} render={() => <Settings />} />
+                <Route path={"/news"} render={() => <News/>}/>
+                <Route path={"/music"} render={() => <Music/>}/>
+                <Route path={"/settings"} render={() => <Settings/>}/>
 
             </div>
         </div>
