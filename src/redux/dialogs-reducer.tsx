@@ -1,18 +1,18 @@
 import {v1} from "uuid";
-import {renderTree} from "../index";
-import {ActionsType, DialogsPageType, MessageType} from "./store";
+import {DialogsPageType, MessageType} from "./store";
 
 const ADD_MESSAGE = "ADD-MESSAGE"
 const CHANGE_NEW_MESSAGE = "CHANGE-NEW-MESSAGE"
-export const addMessageAC = (messageText: string) => {
-    return {type: ADD_MESSAGE, messageText: messageText} as const
-}
-export const onMessageChangeAC = (newText: string) => {
-    return {type: CHANGE_NEW_MESSAGE, newText: newText} as const
-}
 
-let initialState = {
-    newMessagesText: "Enter your message",
+export const addMessageAC = () => ({type: ADD_MESSAGE} as const)
+export const onMessageChangeAC = (newText: string) => ({type: CHANGE_NEW_MESSAGE, newText: newText} as const)
+
+export type ActionsType =
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof onMessageChangeAC>
+
+export let initialState = {
+    newMessagesText: "",
     messages: [
         {id: v1(), message: "Hello my friends"},
         {id: v1(), message: "How are you"},
@@ -29,21 +29,23 @@ let initialState = {
         {id: 6, name: "Maks"}
     ],
 }
+type InitialStateType = typeof initialState
 
-export const dialogsReducer = (state = initialState, action: ActionsType): DialogsPageType => {
+export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage: MessageType = {
                 id: v1(),
-                message: action.messageText,
+                message: state.newMessagesText,
             }
             state.messages.push(newMessage)
-            renderTree()
-    }
-    switch (action.type) {
+            state.newMessagesText = " "
+            return state
+
         case "CHANGE-NEW-MESSAGE":
             state.newMessagesText = action.newText;
-            renderTree()
+            return state
+        default:
+            return state
     }
-    return state
 }

@@ -49,8 +49,8 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action: ActionsType) {
-        this.getState().profilePage = profileReducer(this.getState().profilePage, action)
-        this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
+        // this.getState().profilePage = profileReducer(this.getState().profilePage, action)
+        // this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
         this.getState().sidebar = sidebarReducer(this.getState().sidebar, action)
     }
 }

@@ -5,15 +5,17 @@ import Navbar from "./components/Navbar/Navbar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route} from 'react-router-dom';
-import {StoreType, DialogType, MessageType, PostType, RootStateType, store} from "./redax/store";
+import {StoreType, DialogType, MessageType, PostType, RootStateType, store} from "./redux/store";
 import {News} from './components/News/News';
 import {Music} from './components/Music/News';
 import {Settings} from './components/Settings/News';
-import {ReduxStateType, ReduxStoreType } from './redax/redax-store';
+import {ReduxStateType} from './redux/redux-store';
+import {Store} from "redux";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
-type AppPropsType = {
-    store: ReduxStoreType
+export type AppPropsType = {
+    store: any
     state: ReduxStateType
 }
 
@@ -24,22 +26,14 @@ function App(props: AppPropsType) {
             <Navbar friends={props.state.sidebar.friends}/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/dialogs"}
-                       render={() => <Dialogs
-                           dialogs={props.state.dialogsPage.dialogs}
-                           messages={props.state.dialogsPage.messages}
-                           dialogsPage={props.state.dialogsPage.newMessagesText}
-                           dispatch={props.store.dispatch.bind(props.store)}
-                       />}/>
+                       render={() => <DialogsContainer store={props.store} state={props.state}/>}/>
                 <Route path={"/profile"}
                        render={() => <Profile
-                           posts={props.state.profilePage.posts}
-                           message={props.state.profilePage.messageForNewPost}
-                           dispatch={props.store.dispatch.bind(props.store)}
+                           store={props.store}
                        />}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
-
             </div>
         </div>
     );

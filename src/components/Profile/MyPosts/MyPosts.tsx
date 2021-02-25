@@ -1,14 +1,13 @@
 import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {ActionsType,PostType} from "../../../redax/store";
-import {addPostAC, newTextChangeAC} from "../../../redax/profile-reducer";
-
+import {PostType} from "../../../redux/store";
 
 type  MyPostsPropsType = {
     posts: Array<PostType>
     message: string
-    dispatch: (action: ActionsType) => void
+    addPost: () => void
+    newTextChange: (newText: string) => void
 }
 
 
@@ -18,11 +17,10 @@ function MyPosts(props: MyPostsPropsType) {
         <Post id={post.id} message={post.message} likesCount={post.likesCount}/>)
 
     const addPost = () => {
-        props.dispatch(addPostAC(props.message))
-        props.dispatch(newTextChangeAC(" "))
+        props.addPost()
     }
     const newTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(newTextChangeAC(e.currentTarget.value))
+        props.newTextChange(e.currentTarget.value)
     }
 
     return (
