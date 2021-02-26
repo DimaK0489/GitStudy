@@ -3,13 +3,12 @@ import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import {PostType} from "../../../redux/store";
 
-type  MyPostsPropsType = {
+export type  MyPostsPropsType = {
     posts: Array<PostType>
     message: string
     addPost: () => void
     newTextChange: (newText: string) => void
 }
-
 
 function MyPosts(props: MyPostsPropsType) {
 

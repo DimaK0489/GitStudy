@@ -18,16 +18,16 @@ export type AppPropsType = {
     store: Store
 }
 
-function App(props: AppPropsType) {
+function App() {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar friends={props.store.getState().sidebar.friends}/>
+            <Navbar friends={store.getState().sidebar.friends}/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/dialogs"}
-                       render={() => <DialogsContainer store={props.store} />}/>
+                       render={() => <DialogsContainer />}/>
                 <Route path={"/profile"}
-                       render={() => <Profile store={props.store} />}/>
+                       render={() => <Profile  />}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
