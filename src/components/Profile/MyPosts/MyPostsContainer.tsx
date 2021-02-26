@@ -4,6 +4,7 @@ import MyPosts from "./MyPosts";
 import {Dispatch, Store} from "redux";
 import {connect} from "react-redux";
 import {store} from "../../../redux/store";
+import {ReduxStateType} from "../../../redux/redux-store";
 
 type  MyPostsContainerPropsType = {
     store: Store
@@ -28,6 +29,15 @@ type  MyPostsContainerPropsType = {
     />);
 }*/
 
+type MSTPType = {
+
+}
+
+type MDTPType = {
+    newTextChange: (text: string) => void
+    addPost: () => void
+}
+
 const mapStateToProps = () => {
     return {
         posts: store.getState().profilePage.messageForNewPost ,
@@ -35,7 +45,7 @@ const mapStateToProps = () => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): MDTPType => {
     return {
         addPost: () => {dispatch(addPostAC())},
         newTextChange: (text: string) => {dispatch(newTextChangeAC(text))}

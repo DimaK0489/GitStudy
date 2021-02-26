@@ -1,7 +1,7 @@
 import React from "react";
 import {addMessageAC, onMessageChangeAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import {Store} from "redux";
+import {Dispatch, Store} from "redux";
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
 import {ActionsType, store} from "../../redux/store";
@@ -27,14 +27,23 @@ type DialogsContainerPropsType = {
                  onMessageChange={onMessageChange}/>
         )
 }*/
+type MSTPType = {
+    state: ReduxStateType
+}
+
+type MDTPType = {
+    onMessageChange: (text: string) => void
+    addMessage: () => void
+}
+
 let mapStateToProps = (state: ReduxStateType) => {
     return{
-        dialogs: state.dialogsPage,
+        dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage,
         newMessagesText: state.dialogsPage
     }
 }
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Dispatch): MDTPType => {
     return{
         addMessage: () => {dispatch(addMessageAC())},
         onMessageChange: (text: string) => {dispatch(onMessageChangeAC(text))}
