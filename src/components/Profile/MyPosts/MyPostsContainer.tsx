@@ -30,7 +30,8 @@ type  MyPostsContainerPropsType = {
 }*/
 
 type MSTPType = {
-
+    posts: any
+    message: any
 }
 
 type MDTPType = {
@@ -38,10 +39,10 @@ type MDTPType = {
     addPost: () => void
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state: ReduxStateType): MSTPType => {
     return {
-        posts: store.getState().profilePage.messageForNewPost ,
-        message: store.getState().profilePage.messageForNewPost
+        posts: state.profilePage.posts,
+        message: state.profilePage.messageForNewPost
     }
 }
 

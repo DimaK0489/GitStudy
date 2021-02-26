@@ -28,7 +28,9 @@ type DialogsContainerPropsType = {
         )
 }*/
 type MSTPType = {
-    state: ReduxStateType
+    dialogs: any
+    messages: any
+    newMessagesText: any
 }
 
 type MDTPType = {
@@ -36,11 +38,11 @@ type MDTPType = {
     addMessage: () => void
 }
 
-let mapStateToProps = (state: ReduxStateType) => {
+let mapStateToProps = (state: ReduxStateType): MSTPType => {
     return{
         dialogs: state.dialogsPage.dialogs,
-        messages: state.dialogsPage,
-        newMessagesText: state.dialogsPage
+        messages: state.dialogsPage.messages,
+        newMessagesText: state.dialogsPage.newMessagesText
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): MDTPType => {
