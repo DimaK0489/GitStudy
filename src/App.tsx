@@ -16,21 +16,18 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 export type AppPropsType = {
     store: Store
-    state: ReduxStateType
 }
 
 function App(props: AppPropsType) {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar friends={props.state.sidebar.friends}/>
+            <Navbar friends={props.store.getState().sidebar.friends}/>
             <div className={"app-wrapper-content"}>
                 <Route path={"/dialogs"}
-                       render={() => <DialogsContainer store={props.store} state={props.state}/>}/>
+                       render={() => <DialogsContainer store={props.store} />}/>
                 <Route path={"/profile"}
-                       render={() => <Profile
-                           store={props.store}
-                       />}/>
+                       render={() => <Profile store={props.store} />}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>

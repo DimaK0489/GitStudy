@@ -8,7 +8,6 @@ type  MyPostsContainerPropsType = {
 }
 
 function MyPostsContainer(props: MyPostsContainerPropsType) {
-    // let state = props.store.getState();
 
     const addPost = () => {
         props.store.dispatch(addPostAC())

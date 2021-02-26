@@ -8,7 +8,7 @@ import Message from "./Message/Message";
 type DialogsPropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessagesText:string
+    newMessagesText: string
     addMessage: () => void
     onMessageChange: (newText: string) => void
 }
@@ -34,7 +34,7 @@ function Dialogs(props: DialogsPropsType) {
 
             <div className={s.messages}>
                 {messageElements}
-                <textarea onChange={(e) => onMessageChange(e)} value={props.newMessagesText}/>
+                <textarea onChange={onMessageChange} value={props.newMessagesText}/>
                 <div>
                     <button onClick={addMessage}>Send</button>
                 </div>

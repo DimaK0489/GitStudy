@@ -1,4 +1,3 @@
-import {ActionsType, SidebarPropsType} from "./store";
 import {v1} from "uuid";
 
 let initialState = {
@@ -8,7 +7,8 @@ let initialState = {
         {id: v1(), name: "Anna"},
     ]
 }
+type InitialStateType = typeof initialState
 
-export const sidebarReducer = (state = initialState, action: ActionsType): SidebarPropsType => {
+export const sidebarReducer = (state: InitialStateType = initialState): InitialStateType => {
     return state
 }

@@ -9,7 +9,7 @@ import App from "./App";
 export const renderTree = (state: ReduxStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} state={store.getState()}/>
+            <App store={store} />
         </BrowserRouter>, document.getElementById('root'));
 }
 renderTree(store.getState());
@@ -17,7 +17,7 @@ store.subscribe(()=> {
     let state = store.getState()
     renderTree(state)
 })
-// store.subscribe(renderTree)
+
 
 
 

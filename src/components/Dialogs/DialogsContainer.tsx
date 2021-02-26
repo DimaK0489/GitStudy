@@ -1,13 +1,11 @@
-import React, {ChangeEvent} from "react";
-import { addMessageAC, onMessageChangeAC } from "../../redux/dialogs-reducer";
+import React from "react";
+import {addMessageAC, onMessageChangeAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {Store} from "redux";
-import {ReduxStateType} from "../../redux/redux-store";
 
 
 type DialogsContainerPropsType = {
-    store: any
-    state: ReduxStateType
+    store: Store
 }
 
 function DialogsContainer(props: DialogsContainerPropsType) {
@@ -19,9 +17,9 @@ function DialogsContainer(props: DialogsContainerPropsType) {
         props.store.dispatch(onMessageChangeAC(text))
     }
     return (
-        <Dialogs dialogs={props.state.dialogsPage.dialogs}
-                 messages={props.state.dialogsPage.messages}
-                 newMessagesText={props.state.dialogsPage.newMessagesText}
+        <Dialogs dialogs={props.store.getState().dialogsPage.dialogs}
+                 messages={props.store.getState().dialogsPage.messages}
+                 newMessagesText={props.store.getState().dialogsPage.newMessagesText}
                  addMessage={addMessage}
                  onMessageChange={onMessageChange}/>
         )

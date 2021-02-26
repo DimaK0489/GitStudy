@@ -1,6 +1,6 @@
 import {v1} from "uuid";
-import {addPostAC, newTextChangeAC, profileReducer} from "./profile-reducer";
-import {addMessageAC, dialogsReducer, onMessageChangeAC} from "./dialogs-reducer";
+import {addPostAC, newTextChangeAC} from "./profile-reducer";
+import {addMessageAC, onMessageChangeAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
 export const store: StoreType = {
@@ -51,7 +51,7 @@ export const store: StoreType = {
     dispatch(action: ActionsType) {
         // this.getState().profilePage = profileReducer(this.getState().profilePage, action)
         // this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
-        this.getState().sidebar = sidebarReducer(this.getState().sidebar, action)
+        //this.getState().sidebar = sidebarReducer(this.getState().sidebar, action)
     }
 }
 export type StoreType = {
