@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
-import store from "./redux/redux-store"
+import store, {ReduxStateType} from "./redux/redux-store"
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
 
 
-export const renderTree = (state: any) => {
+export const renderTree = (state: ReduxStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <App store={store} state={store.getState()}/>

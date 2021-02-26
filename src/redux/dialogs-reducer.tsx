@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {DialogsPageType, MessageType} from "./store";
+import {MessageType} from "./store";
 
 const ADD_MESSAGE = "ADD-MESSAGE"
 const CHANGE_NEW_MESSAGE = "CHANGE-NEW-MESSAGE"

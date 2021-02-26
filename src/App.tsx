@@ -15,7 +15,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 export type AppPropsType = {
-    store: any
+    store: Store
     state: ReduxStateType
 }
 
