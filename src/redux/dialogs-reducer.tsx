@@ -13,13 +13,6 @@ export type ActionsType =
 
 export let initialState = {
     newMessagesText: "",
-    messages: [
-        {id: v1(), message: "Hello my friends"},
-        {id: v1(), message: "How are you"},
-        {id: v1(), message: "Sorry i am latte"},
-        {id: v1(), message: "React very easy"},
-        {id: v1(), message: "Good night"},
-    ],
     dialogs: [
         {id: 1, name: "Alena"},
         {id: 2, name: "Denis"},
@@ -28,23 +21,31 @@ export let initialState = {
         {id: 5, name: "Dimas"},
         {id: 6, name: "Maks"}
     ],
+    messages: [
+        {id: v1(), message: "Hello my friends"},
+        {id: v1(), message: "How are you"},
+        {id: v1(), message: "Sorry i am latte"},
+        {id: v1(), message: "React very easy"},
+        {id: v1(), message: "Good night"},
+    ]
 }
 type InitialStateType = typeof initialState
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case "ADD-MESSAGE":
-            const newMessage: MessageType = {
-                id: v1(),
-                message: state.newMessagesText,
-            }
-            state.messages.push(newMessage)
-            state.newMessagesText = " "
-            return state
-
-        case "CHANGE-NEW-MESSAGE":
-            state.newMessagesText = action.newText;
-            return state
+        case "ADD-MESSAGE": {
+            const newMessage: MessageType = {id: v1(), message: state.newMessagesText,}
+            let copyState = {...state}
+            copyState.messages = [...state.messages]
+            copyState.messages.push(newMessage)
+            copyState.newMessagesText = " "
+            return copyState
+        }
+        case "CHANGE-NEW-MESSAGE": {
+            let copyState = {...state}
+            copyState.newMessagesText = action.newText;
+            return copyState
+        }
         default:
             return state
     }
