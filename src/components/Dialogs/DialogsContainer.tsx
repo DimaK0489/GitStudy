@@ -30,7 +30,7 @@ type DialogsContainerPropsType = {
 type MSTPType = {
     dialogs: any
     messages: any
-    newMessagesText: any
+    newMessagesText: string
 }
 
 type MDTPType = {

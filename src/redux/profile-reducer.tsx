@@ -5,6 +5,7 @@ const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT"
 
 export const addPostAC = () => ({type: ADD_POST} as const)
 export const newTextChangeAC = (newText: string) => ({type: CHANGE_NEW_TEXT, newText: newText} as const)
+
 export type ActionsType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof newTextChangeAC>

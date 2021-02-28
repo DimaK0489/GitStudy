@@ -31,7 +31,7 @@ type  MyPostsContainerPropsType = {
 
 type MSTPType = {
     posts: any
-    message: any
+    message: string
 }
 
 type MDTPType = {
