@@ -13,7 +13,7 @@ export type  MyPostsPropsType = {
 function MyPosts(props: MyPostsPropsType) {
 
     const postsElements = props.posts.map((post) =>
-        <Post id={post.id} message={post.message} likesCount={post.likesCount}/>)
+        <Post key={post.id} id={post.id} message={post.message} likesCount={post.likesCount}/>)
 
     const addPost = () => {
         props.addPost()
