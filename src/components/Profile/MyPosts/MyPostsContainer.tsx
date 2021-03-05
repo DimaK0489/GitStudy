@@ -3,34 +3,11 @@ import {addPostAC, newTextChangeAC} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {Dispatch, Store} from "redux";
 import {connect} from "react-redux";
-import {store} from "../../../redux/store";
+import {PostType, store} from "../../../redux/store";
 import {ReduxStateType} from "../../../redux/redux-store";
 
-type  MyPostsContainerPropsType = {
-    store: Store
-}
-
-/*function MyPostsContainer(props: MyPostsContainerPropsType) {
-
-    const addPost = () => {
-        props.store.dispatch(addPostAC())
-    }
-
-    const newTextChange = (text: string) => {
-        props.store.dispatch(newTextChangeAC(text))
-    }
-
-    return (
-        <MyPosts
-        addPost={addPost}
-        newTextChange={newTextChange}
-        message={props.store.getState().profilePage.messageForNewPost}
-        posts={props.store.getState().profilePage.posts}
-    />);
-}*/
-
 type MSTPType = {
-    posts: any
+    posts: Array<PostType>
     message: string
 }
 

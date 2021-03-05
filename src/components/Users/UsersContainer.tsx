@@ -14,13 +14,13 @@ function mapStateToProps(state: ReduxStateType) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        follow: (userID: string) => {
-            dispatch(followAC(userID))
+        follow: (userId: string) => {
+            dispatch(followAC(userId))
         },
-        unfollow: (userID: string) => {
-            dispatch(unfollowAC(userID))
+        unfollow: (userId: string) => {
+            dispatch(unfollowAC(userId))
         },
-        setUsers: (users: any) => {
+        setUsers: (users: []) => {
             dispatch(setUsersAC(users))
         }
     }

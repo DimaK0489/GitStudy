@@ -1,15 +1,11 @@
 import React from "react";
 import {addMessageAC, onMessageChangeAC} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import {Dispatch, Store} from "redux";
+import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {ActionsType, store} from "../../redux/store";
+import {DialogType, MessageType} from "../../redux/store";
 
-
-type DialogsContainerPropsType = {
-    store: Store
-}
 
 /*function DialogsContainer(props: DialogsContainerPropsType) {
 
@@ -28,8 +24,8 @@ type DialogsContainerPropsType = {
         )
 }*/
 type MSTPType = {
-    dialogs: any
-    messages: any
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
     newMessagesText: string
 }
 

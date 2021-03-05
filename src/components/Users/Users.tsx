@@ -1,18 +1,16 @@
 import React from "react";
 import style from './users.module.css'
-import {v1} from "uuid";
+import {UsersType} from "../../redux/users-reducer";
 
+type UsersPropsType = {
+    unfollow: (userId: string) => void
+    follow: (userId: string) => void
+    users: Array<UsersType>
+    setUsers: (users: []) => void
+}
 
-const Users = () => {
-    if(props.users.length === 0){
-    props.setUsers([
-        {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: false,  fullName: "Dima", status: "Students It-Incubator", location: {city: "Minsk", country: "Belarus"}},
-        {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: true, fullName: "Alena", status: "QA Testing", location: {city: "Minsk", country: "Belarus"}},
-        {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: true, fullName: "Liliya", status: "Boss", location: {city: "California", country: "USA"}},
-    ])}
+const Users = (props: UsersPropsType) => {
+
     return (
         <div>
             {props.users.map(u => <div key={u.id}>
