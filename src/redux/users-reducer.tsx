@@ -6,9 +6,9 @@ export const setUsersAC = (users: Array<UsersType>) => ({type: "SET_USERS", user
 
 export type UsersType = {
     id: string
-    photoUrl: string
+    photos: any
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: LocationType
 }
@@ -23,12 +23,12 @@ export type ActionsType =
 
 export let initialsState = {
     users: [
+        {id: v1(), photos: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
+            followed: false,  name: "Dima", status: "Students It-Incubator", location: {city: "Minsk", country: "Belarus"}},
         {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: false,  fullName: "Dima", status: "Students It-Incubator", location: {city: "Minsk", country: "Belarus"}},
+            followed: true, name: "Alena", status: "QA Testing", location: {city: "Minsk", country: "Belarus"}},
         {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: true, fullName: "Alena", status: "QA Testing", location: {city: "Minsk", country: "Belarus"}},
-        {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: true, fullName: "Liliya", status: "Boss", location: {city: "California", country: "USA"}},
+            followed: true, name: "Liliya", status: "Boss", location: {city: "California", country: "USA"}},
     ]
 }
 export type InitialStateType = typeof initialsState
