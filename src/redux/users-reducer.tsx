@@ -25,10 +25,6 @@ export let initialsState = {
     users: [
         {id: v1(), photos: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
             followed: false,  name: "Dima", status: "Students It-Incubator", location: {city: "Minsk", country: "Belarus"}},
-        {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: true, name: "Alena", status: "QA Testing", location: {city: "Minsk", country: "Belarus"}},
-        {id: v1(), photoUrl: "https://static-cdn.jtvnw.net/jtv_user_pictures/262fbd6f-4ac7-4d53-ad60-dc4368928462-profile_image-300x300.png",
-            followed: true, name: "Liliya", status: "Boss", location: {city: "California", country: "USA"}},
     ]
 }
 export type InitialStateType = typeof initialsState

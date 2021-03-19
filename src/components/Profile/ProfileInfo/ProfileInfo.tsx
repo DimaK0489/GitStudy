@@ -6,7 +6,7 @@ function ProfileInfo() {
     return (
         <div>
             <div className={s.content}>
-                <img src="https://www.onetwotrip.com/ru/blog/wp-content/uploads/2017/08/rocks.jpg" alt={""}/>
+                <img src="https://s1.1zoom.ru/b4855/832/Volvo_XC90_Blue_Metallic_Crossover_514554_1366x768.jpg" alt={""}/>
             </div>
             <div className={s.descriptionBlock}>
                 ava + description
