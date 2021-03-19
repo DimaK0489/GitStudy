@@ -13,21 +13,19 @@ type UsersPropsType = {
 
 
 class Users extends React.Component<UsersPropsType> {
-    getUsers = () => {
-        if (this.props.users.length === 1) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users")
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                })
-        }
+    componentDidMount() {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
     }
+
     render() {
         return <div>
-            <button onClick={this.getUsers}>GetUsers</button>
             {this.props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img className={style.userPhoto} src={u.photos != null ? u.photos : userPhoto}
+                        <img className={style.userPhoto} src={u.photos.small != null ? u.photos.small : userPhoto}
                              alt={""}/>
                     </div>
                     <div>
@@ -54,5 +52,6 @@ class Users extends React.Component<UsersPropsType> {
         </div>
     }
 }
+
 export default Users;
 
