@@ -41,7 +41,8 @@ export let initialsState = {
     ],
     pageSize: 5,
     totalUsersCount: 50,
-    currentPage: 2,
+    currentPage: 1,
+    isFetching: false,
 }
 export type InitialStateType = typeof initialsState
 
