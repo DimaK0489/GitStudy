@@ -40,7 +40,7 @@ export let initialsState = {
         },
     ],
     pageSize: 5,
-    totalUsersCount: 20,
+    totalUsersCount: 50,
     currentPage: 2,
 }
 export type InitialStateType = typeof initialsState
