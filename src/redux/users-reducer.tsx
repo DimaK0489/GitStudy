@@ -13,12 +13,12 @@ export type LocationType = {
     country: string
 }
 export type ActionsType =
-    ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setUsersTotalCountAC>
-    | ReturnType<typeof toggleIsFetchingAC>
+    ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
 
 export let initialsState = {
     users: [
@@ -32,7 +32,7 @@ export let initialsState = {
         },
     ],
     pageSize: 5,
-    totalUsersCount: 100,
+    totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
 }
@@ -73,11 +73,11 @@ export const usersReducer = (state: InitialStateType = initialsState, action: Ac
     }
 }
 
-export const followAC = (userId: string) => ({type: "FOLLOW", userId} as const)
-export const unfollowAC = (userId: string) => ({type: "UNFOLLOW", userId} as const)
-export const setUsersAC = (users: Array<UsersType>) => ({type: "SET_USERS", users} as const)
-export const setCurrentPageAC = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage} as const)
-export const setUsersTotalCountAC = (totalUsersCount: number) => ({
+export const follow = (userId: string) => ({type: "FOLLOW", userId} as const)
+export const unfollow = (userId: string) => ({type: "UNFOLLOW", userId} as const)
+export const setUsers = (users: Array<UsersType>) => ({type: "SET_USERS", users} as const)
+export const setCurrentPage = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage} as const)
+export const setTotalUsersCount = (totalUsersCount: number) => ({
     type: "SET_TOTAL_USERS_COUNT",
     count: totalUsersCount} as const)
-export const toggleIsFetchingAC = (isFetching: boolean) => ({type: "TOGGLE IS FETCHING", isFetching} as const)
+export const toggleIsFetching = (isFetching: boolean) => ({type: "TOGGLE IS FETCHING", isFetching} as const)
