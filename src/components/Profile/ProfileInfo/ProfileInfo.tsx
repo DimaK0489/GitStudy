@@ -3,7 +3,7 @@ import s from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/preloader/preloder";
 
 type ProfileInfoPropsType = {
-    profile: null
+    profile: any
 }
 
 function ProfileInfo(props: ProfileInfoPropsType) {
