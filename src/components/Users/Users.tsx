@@ -47,31 +47,25 @@ let Users = (props: UsersPropsType) => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0//follow/${u.id}`,  {
-                                    withCredentials: true,
-                                    headers: {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0//follow/${u.id}`, {withCredentials: true,headers: {
                                         "API-KEY": "bf0875ba-8463-481a-87a8-643832194416"
-                                    }
-                                })
+                                    }})
                                     .then(response => {
-                                        if( response.data.resultCode === 0) {
+                                        if (response.data.resultCode === 0) {
                                             props.unfollow(u.id)
                                         }
-                                    });
+                                    })
 
                             }}>Unfollow</button>
                             : <button onClick={() => {
-                                axios.post(`https://social-network.samuraijs.com/api/1.0//follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {
+                                axios.post(`https://social-network.samuraijs.com/api/1.0//follow/${u.id}`, {}, {withCredentials: true, headers: {
                                         "API-KEY": "bf0875ba-8463-481a-87a8-643832194416"
-                                    }
-                                })
+                                    }})
                                     .then(response => {
-                                        if( response.data.resultCode === 0) {
+                                        if (response.data.resultCode === 0) {
                                             props.follow(u.id)
                                         }
-                                    });
+                                    })
 
                             }}>Follow</button>
                         }

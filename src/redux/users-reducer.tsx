@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 
 export type UsersType = {
-    id: string
+    id: any
     photos: any
     followed: boolean
     name: string
