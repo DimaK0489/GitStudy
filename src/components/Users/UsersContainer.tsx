@@ -26,7 +26,7 @@ type UsersPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     isFetching: boolean
     toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress: (isFetching: boolean) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Array<number>
 }
 
@@ -112,4 +112,4 @@ export default connect(mapStateToProps, {
     setTotalUsersCount,
     toggleIsFetching,
     toggleFollowingProgress
-})(UsersContainer)
+})(UsersContainer);
