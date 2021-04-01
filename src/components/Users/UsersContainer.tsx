@@ -44,15 +44,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize);
-        /*this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-        })*/
     }
-
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
@@ -106,21 +98,7 @@ function mapStateToProps(state: ReduxStateType) {
         }
     }
 }*/
-
-//let withRedirect = withAuthRedirect(UsersContainer)
-
-/*export default withAuthRedirect( connect(mapStateToProps, {
-    setUsers,
-    setTotalUsersCount,
-    toggleIsFetching,
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers
-})(UsersContainer));*/
-
-export default compose(
+export default compose<React.ComponentType>(
     withAuthRedirect,
     connect(mapStateToProps, {
     setUsers, setTotalUsersCount, toggleIsFetching, follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers

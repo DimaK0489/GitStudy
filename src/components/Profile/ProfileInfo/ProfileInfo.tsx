@@ -2,6 +2,7 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/preloader/preloder";
 
+
 type ProfileInfoPropsType = {
     profile: any
 }
@@ -17,7 +18,7 @@ function ProfileInfo(props: ProfileInfoPropsType) {
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={""}/>
-                ava + description
+                {/*<ProfileStatus status={"Hello"} />*/}
             </div>
         </div>
     );

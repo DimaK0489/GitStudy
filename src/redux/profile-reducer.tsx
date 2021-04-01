@@ -28,11 +28,12 @@ export let initialsState = {
         {id: v1(), message: "It is my first post", likesCount: 6},
         {id: v1(), message: "Hello", likesCount: 12},
     ],
-    profile: null
+    profile: null,
+    userId: 0  
 }
-export type InitialStateType = typeof initialsState
+export type ProfileType = typeof initialsState
 
-export const profileReducer = (state: InitialStateType = initialsState, action: ActionsType): InitialStateType => {
+export const profileReducer = (state: ProfileType = initialsState, action: ActionsType): ProfileType => {
     switch (action.type) {
         case "ADD-POST":
             const newPost = {id: v1(), message: state.messageForNewPost, likesCount: 0}

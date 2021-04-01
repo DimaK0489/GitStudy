@@ -1,33 +1,33 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile} from "../../redux/profile-reducer";
+import {getUserProfile, ProfileType} from "../../redux/profile-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
-import {withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../Hoc/WithAuthRedirect";
 import {compose} from "redux";
 
-type ProfileContainerPropsType = {
-    profile: null
-    getUserProfile: (userId: number) => void
-    isAuth: boolean
-    match: any
+type PathParamType = {
+    userId: string
 }
-let mapStateToProps = (state: ReduxStateType) => {
-    return {
-        profile: state.profilePage.profile}
-    //isAuth: state.auth.isAuth
-};
+type MapStateToPropsType = {
+    profile: ProfileType | null
+}
+type MapDispatchToPropsType = {
+    getUserProfile: (userId: number) => void
+}
+type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-class ProfileContainer extends React.Component<any> {
+type ProfileContainerPropsType = RouteComponentProps<PathParamType> & OwnPropsType
+
+class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId) {
-            userId = 2;
+        let userId = Number(this.props.match.params.userId);
+        if (!userId && this.props.profile) {
+            userId = this.props.profile.userId
         }
         this.props.getUserProfile(userId);
     }
-
     render() {
         return (
             <div>
@@ -36,12 +36,18 @@ class ProfileContainer extends React.Component<any> {
         )
     }
 }
+let mapStateToProps = (state: ReduxStateType) => {
+    return {
+        profile: state.profilePage.profile}
+};
 
-export default compose(
+export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer)
 
-
+/*let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+let WithUrlDateContainerComponent = withRouter(AuthRedirectComponent);
+ connect(mapStateToProps, {getUserProfile})(WithUrlDateContainerComponent);*/
 
