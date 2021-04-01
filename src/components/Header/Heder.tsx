@@ -5,7 +5,7 @@ import s from "./Header.module.css";
 type HeaderPropsType = {
     id: number | null
     isAuth: boolean
-    login: any
+    login: string
     email: string | null
 }
 
