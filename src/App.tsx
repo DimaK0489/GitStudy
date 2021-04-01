@@ -11,6 +11,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HederContainer";
+import {Login} from "./components/Login/login";
 
 
 export type AppPropsType = {
@@ -23,12 +24,13 @@ function App() {
             <HeaderContainer />
             <Navbar friends={store.getState().sidebar.friends}/>
             <div className={"app-wrapper-content"}>
-                <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
+                <Route path={"/dialogs"} render={() => <DialogsContainer />}/>
                 <Route path={"/profile/:userId?"} render={() => <ProfileContainer />}/>
                 <Route path={"/users"} render={() => <UsersContainer />}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
+                <Route path={"/login"} render={() => <Login />}/>
             </div>
         </div>
     );

@@ -3,11 +3,14 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getUserProfile} from "../../redux/profile-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
+import {withAuthRedirect} from "../../Hoc/WithAuthRedirect";
 
 type ProfileContainerPropsType = {
     profile: null
-    setUserProfile: (profile: null) => void
+    getUserProfile: (userId: number) => void
+    isAuth: boolean
+    match: any
 }
 
 class ProfileContainer extends React.Component<any> {
@@ -28,10 +31,13 @@ class ProfileContainer extends React.Component<any> {
     }
 }
 
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+
 let mapStateToProps = (state: ReduxStateType) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    //isAuth: state.auth.isAuth
 });
 
-let WithUrlDateContainerComponent = withRouter(ProfileContainer);
+let WithUrlDateContainerComponent = withRouter(AuthRedirectComponent);
 export default connect(mapStateToProps, {getUserProfile})(WithUrlDateContainerComponent);
 

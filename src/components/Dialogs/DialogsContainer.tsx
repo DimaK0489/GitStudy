@@ -4,8 +4,7 @@ import Dialogs from "./Dialogs";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {DialogType, MessageType} from "../../redux/store";
-
+import {withAuthRedirect} from "../../Hoc/WithAuthRedirect";
 
 /*function DialogsContainer(props: DialogsContainerPropsType) {
 
@@ -23,30 +22,26 @@ import {DialogType, MessageType} from "../../redux/store";
                  onMessageChange={onMessageChange}/>
         )
 }*/
-type MSTPType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessagesText: string
-}
 
-type MDTPType = {
-    onMessageChange: (text: string) => void
-    addMessage: () => void
-}
-
-let mapStateToProps = (state: ReduxStateType): MSTPType => {
+let mapStateToProps = (state: ReduxStateType) => {
     return{
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        newMessagesText: state.dialogsPage.newMessagesText
+        newMessagesText: state.dialogsPage.newMessagesText,
+        //isAuth: state.auth.isAuth
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): MDTPType => {
+let mapDispatchToProps = (dispatch: Dispatch) => {
     return{
         addMessage: () => {dispatch(addMessageAC())},
         onMessageChange: (text: string) => {dispatch(onMessageChangeAC(text))}
     }
 }
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs);
+const AuthRedirectComponent = withAuthRedirect(Dialogs);
+    /*(props: any) => {
+    if(!props.isAuth) return <Redirect to={"/login"}/>
+    return <Dialogs {...props} />
+}*/
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (AuthRedirectComponent);
 
 export default DialogsContainer;

@@ -11,6 +11,7 @@ import {
     UsersType
 } from "../../redux/users-reducer";
 import {Preloader} from "../common/preloader/preloder";
+import {withAuthRedirect} from "../../Hoc/WithAuthRedirect";
 
 type UsersPropsType = {
     unfollow: (userId: number) => void
@@ -105,7 +106,9 @@ function mapStateToProps(state: ReduxStateType) {
     }
 }*/
 
-export default connect(mapStateToProps, {
+//let withRedirect = withAuthRedirect(UsersContainer)
+
+export default withAuthRedirect( connect(mapStateToProps, {
     setUsers,
     setTotalUsersCount,
     toggleIsFetching,
@@ -114,4 +117,4 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     toggleFollowingProgress,
     getUsers
-})(UsersContainer);
+})(UsersContainer));
