@@ -8,15 +8,16 @@ export type UsersPropsType = {
     unfollow: (userId: number) => void
     follow: (userId: number) => void
     users: Array<UsersType>
-    setUsers: (users: []) => void
     pageSize: number
     totalUsersCount: number
-    currentPage: number | string
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalCount: number) => void
     onPageChanged: (p: number) => void
-    toggleFollowingProgress: (isFetching: boolean, id: number) => void
     followingInProgress: Array<number>
+    //currentPage: number | string
+    //setCurrentPage: (currentPage: number) => void
+    //setTotalUsersCount: (totalCount: number) => void
+    //toggleFollowingProgress: (isFetching: boolean, id: number) => void
+    //setUsers: (users: []) => void
+
 }
 
 let Users = (props: UsersPropsType) => {
@@ -52,13 +53,6 @@ let Users = (props: UsersPropsType) => {
 
                             : <button disabled={props.followingInProgress.some(id => id === u.id)}
                                       onClick={() => {  props.follow(u.id)
-                                          /*props.toggleFollowingProgress(true, u.id)
-                                                    usersAPI.follow(u.id)
-                                              .then(response => {
-                                                  if (response.data.resultCode === 0) {
-                                                      props.follow(u.id)
-                                                  }
-                                                  props.toggleFollowingProgress(false, u.id) })*/
 
                             }}>Follow</button>
                         }

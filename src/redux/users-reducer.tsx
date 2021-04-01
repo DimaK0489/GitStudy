@@ -40,9 +40,9 @@ export let initialsState = {
     followingInProgress: [] as Array<number>
     }
 
-export type InitialStateType = typeof initialsState
+export type usersStateType = typeof initialsState
 
-export const usersReducer = (state: InitialStateType = initialsState, action: ActionsType): InitialStateType => {
+export const usersReducer = (state: usersStateType = initialsState, action: ActionsType): usersStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {

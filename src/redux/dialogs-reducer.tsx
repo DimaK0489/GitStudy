@@ -29,9 +29,9 @@ export let initialState = {
         {id: v1(), message: "Good night"},
     ]
 }
-type InitialStateType = typeof initialState
+type dialogsType = typeof initialState
 
-export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const dialogsReducer = (state: dialogsType = initialState, action: ActionsType): dialogsType => {
 
     switch (action.type) {
         case "ADD-MESSAGE":
