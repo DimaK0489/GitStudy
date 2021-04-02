@@ -7,12 +7,11 @@ import {News} from './components/News/News';
 import {Music} from './components/Music/News';
 import {Settings} from './components/Settings/News';
 import {Store} from "redux";
-import UsersContainer from "./components/Users/UsersContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HederContainer";
 import {Login} from "./components/Login/login";
-
+import  UsersContainer  from './components/Users/UsersContainer';
 
 export type AppPropsType = {
     store: Store

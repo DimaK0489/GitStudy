@@ -14,12 +14,12 @@ export type ActionsType =
 export let initialState = {
     newMessagesText: "",
     dialogs: [
-        {id: 1, name: "Alena"},
-        {id: 2, name: "Denis"},
-        {id: 3, name: "Andrey"},
-        {id: 4, name: "Juliya"},
-        {id: 5, name: "Dimas"},
-        {id: 6, name: "Maks"}
+        {id: v1(), name: "Alena"},
+        {id: v1(), name: "Denis"},
+        {id: v1(), name: "Andrey"},
+        {id: v1(), name: "Juliya"},
+        {id: v1(), name: "Dimas"},
+        {id: v1(), name: "Maks"}
     ],
     messages: [
         {id: v1(), message: "Hello my friends"},
@@ -29,9 +29,9 @@ export let initialState = {
         {id: v1(), message: "Good night"},
     ]
 }
-type dialogsType = typeof initialState
+export type DialogsType = typeof initialState
 
-export const dialogsReducer = (state: dialogsType = initialState, action: ActionsType): dialogsType => {
+export const dialogsReducer = (state: DialogsType = initialState, action: ActionsType): DialogsType => {
 
     switch (action.type) {
         case "ADD-MESSAGE":

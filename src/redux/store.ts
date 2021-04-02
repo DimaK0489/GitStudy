@@ -1,7 +1,6 @@
 import {v1} from "uuid";
 import {addPostAC, newTextChangeAC} from "./profile-reducer";
 import {addMessageAC, onMessageChangeAC} from "./dialogs-reducer";
-import {sidebarReducer} from "./sidebar-reducer";
 
 export const store: StoreType = {
     _state: {
@@ -23,12 +22,12 @@ export const store: StoreType = {
                 {id: v1(), message: "Good night"},
             ],
             dialogs: [
-                {id: 1, name: "Alena"},
-                {id: 2, name: "Denis"},
-                {id: 3, name: "Andrey"},
-                {id: 4, name: "Juliya"},
-                {id: 5, name: "Dimas"},
-                {id: 6, name: "Maks"}
+                {id: v1(), name: "Alena"},
+                {id: v1(), name: "Denis"},
+                {id: v1(), name: "Andrey"},
+                {id: v1(), name: "Juliya"},
+                {id: v1(), name: "Dimas"},
+                {id: v1(), name: "Maks"}
             ],
         },
         sidebar: {
@@ -67,7 +66,7 @@ export type PostType = {
     likesCount: number
 }
 export type DialogType = {
-    id: number
+    id: string
     name: string
 }
 export type MessageType = {

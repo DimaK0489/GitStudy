@@ -21,13 +21,11 @@ export type UsersPropsType = {
 }
 
 let Users = (props: UsersPropsType) => {
-    {
         let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
         let pages = [];
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);
         }
-
         return <div>
             <div className={style.cursor}>
                 {pages.map(p => {
@@ -53,7 +51,6 @@ let Users = (props: UsersPropsType) => {
 
                             : <button disabled={props.followingInProgress.some(id => id === u.id)}
                                       onClick={() => {  props.follow(u.id)
-
                             }}>Follow</button>
                         }
                     </div>
@@ -70,7 +67,6 @@ let Users = (props: UsersPropsType) => {
                 </span>
             </div>)}
         </div>
-    }
 }
 export default Users;
 

@@ -84,8 +84,8 @@ export const usersReducer = (state: usersStateType = initialsState, action: Acti
     }
 }
 
-export const followSuccess = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const unfollowSuccess = (userId: number) => ({type: "UNFOLLOW", userId} as const)
+export const followSuccess = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const setUsers = (users: Array<UsersType>) => ({type: "SET_USERS", users} as const)
 export const setCurrentPage = (currentPage: number) => ({type: "SET_CURRENT_PAGE", currentPage} as const)
 export const setTotalUsersCount = (totalUsersCount: number) => ({
