@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/preloader/preloder";
+import ProfileStatus from "./ProfileStatus";
 
 
 type ProfileInfoPropsType = {
@@ -18,7 +19,7 @@ function ProfileInfo(props: ProfileInfoPropsType) {
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={""}/>
-                {/*<ProfileStatus status={"Hello"} />*/}
+                <ProfileStatus />
             </div>
         </div>
     );
