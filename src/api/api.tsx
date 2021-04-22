@@ -14,14 +14,24 @@ export const usersAPI = {
             .then(response => response.data)
     },
     follow(userId: number) {
-        return instance.post(`https://social-network.samuraijs.com/api/1.0//follow/${userId}`)
+        return instance.post(`follow/${userId}`)
     },
     unfollow(userId: number) {
-        return instance.delete(`https://social-network.samuraijs.com/api/1.0//follow/${userId}`)
+        return instance.delete(`unfollow/${userId}`)
     },
     getProfile(userId: number) {
-        return axios.get(`https://social-network.samuraijs.com/api/1.0//profile/` + userId)
-
+        return profileAPI.getProfile(userId)
+    }
+}
+export const profileAPI = {
+    getProfile(userId: number) {
+        return instance.get(`profile/` + userId)
+    },
+    getStatus(userId: number) {
+        return instance.get(`profile/status/` + userId)
+    },
+    updateStatus(status: string) {
+        return instance.put(`profile/status`, {status: status})
     }
 }
 

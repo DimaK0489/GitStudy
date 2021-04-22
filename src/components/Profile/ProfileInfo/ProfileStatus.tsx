@@ -1,34 +1,51 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 
+type ProfileStatusType = {
+    status: string
+    updateStatus: (status: string) => void
+}
 
-
-class ProfileStatus extends React.Component {
+class ProfileStatus extends React.Component<ProfileStatusType> {
     state = {
         editMode: false,
-        title: "Hey"
+        status: this.props.status
     }
-    activatedEditMode () {
-        this.state.editMode = true;
+    activatedMode = () => {
         this.setState( {
             editMode: true
         });
+        this.props.updateStatus(this.state.status);
     }
-    deactivateMode() {
+    deactivatedMode = () => {
         this.setState( {
             editMode: false
         })
     }
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState({status: e.currentTarget.value
+        });
 
+    }
     render(){
     return (
         <div>
-            {!this.state.editMode && <div>
-                <span onDoubleClick={ () => {this.activatedEditMode.bind(this)}}> {} </span>
-            </div>}
+            <div>
+                {this.state.editMode && <input onBlur={this.deactivatedMode}
+                                               value={this.props.status}/>}
+                {this.state.editMode && <input
+                    autoFocus={true}
+                    onBlur={this.deactivatedMode}
+                    onChange={this.onStatusChange}
+                    value={this.state.status}/>}
+            </div>
+            <div>
+                {!this.state.editMode &&<span  onDoubleClick={this.activatedMode.bind(this)}>{this.props.status}</span>}
+                {!this.state.editMode && <span
+                    onDoubleClick={this.activatedMode}>
+                    {this.props.status || '_______'}
+                </span>}
 
-            {this.state.editMode && <div>
-                <input autoFocus={true} onBlur={this.deactivateMode.bind(this)} value={"Hello"}> </input>
-            </div>}
+            </div>
         </div>
     );}
 }
