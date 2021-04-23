@@ -3,19 +3,17 @@ import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST"
-const CHANGE_NEW_TEXT = "CHANGE-NEW-TEXT"
 const SET_USER_PROFILE = "SET-USER-PROFILE"
 const SET_STATUS = "SET-STATUS"
 
 export type ActionsType =
     | ReturnType<typeof addPostAC>
-    | ReturnType<typeof newTextChangeAC>
+    //| ReturnType<typeof newTextChangeAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
 
 export let initialsState = {
-    messageForNewPost: "",
-    posts: [
+    postsDate: [
         {id: v1(), message: "How are you", likesCount: 8},
         {id: v1(), message: "It is my first post", likesCount: 6},
         {id: v1(), message: "Hello", likesCount: 12},
@@ -29,16 +27,10 @@ export type ProfileType = typeof initialsState
 export const profileReducer = (state: ProfileType = initialsState, action: ActionsType): ProfileType => {
     switch (action.type) {
         case "ADD-POST":
-            const newPost = {id: v1(), message: state.messageForNewPost, likesCount: 0}
+            const newPost = {id: v1(), message: action.newPostText, likesCount: 0}
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                messageForNewPost: " "
-            }
-        case "CHANGE-NEW-TEXT":
-            return {
-                ...state,
-                messageForNewPost: action.newText
+                postsDate: [...state.postsDate, newPost],
             }
         case "SET-USER-PROFILE":
             return {
@@ -53,8 +45,8 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
             return state
     }
 }
-export const addPostAC = () => ({type: ADD_POST} as const)
-export const newTextChangeAC = (newText: string) => ({type: CHANGE_NEW_TEXT, newText: newText} as const)
+export const addPostAC = (newPostText:string) => ({type: ADD_POST, newPostText} as const)
+//export const newTextChangeAC = (newText: string) => ({type: CHANGE_NEW_TEXT, newText: newText} as const)
 export const setUserProfileAC = (profile: null) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 

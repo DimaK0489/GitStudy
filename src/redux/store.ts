@@ -1,6 +1,6 @@
 import {v1} from "uuid";
-import {addPostAC, newTextChangeAC} from "./profile-reducer";
-import {addMessageAC, onMessageChangeAC} from "./dialogs-reducer";
+import {addPostAC} from "./profile-reducer";
+import {addMessageAC} from "./dialogs-reducer";
 
 export const store: StoreType = {
     _state: {
@@ -97,9 +97,9 @@ export type RootStateType = {
 }
 export type ActionsType =
     ReturnType<typeof addPostAC>
-    | ReturnType<typeof newTextChangeAC>
+    //| ReturnType<typeof newTextChangeAC>
     | ReturnType<typeof addMessageAC>
-    | ReturnType<typeof onMessageChangeAC>
+   // | ReturnType<typeof onMessageChangeAC>
 
 
 
