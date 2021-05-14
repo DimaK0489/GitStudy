@@ -57,7 +57,5 @@ export default compose<React.ComponentType>(
     withAuthRedirect
 )(ProfileContainer)
 
-/*let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-let WithUrlDateContainerComponent = withRouter(AuthRedirectComponent);
- connect(mapStateToProps, {getUserProfile})(WithUrlDateContainerComponent);*/
+
 

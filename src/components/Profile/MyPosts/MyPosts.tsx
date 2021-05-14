@@ -1,18 +1,14 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {Field, InjectedFormProps, reduxForm } from "redux-form";
-import { ProfileType } from "../../../redux/profile-reducer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators";
+import {Textarea} from "../../common/formControls/FormsControls";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
-export type  MyPostsPropsType = {
-    postsDate: ProfileType
-    newPostText?: string
-    addPost: (newPostText: string) => void
-}
 
-const MyPosts = (props: MyPostsPropsType) => {
-    let state = props.postsDate
-    const postsElements = state.postsDate.map((post) =>
+export const MyPosts = (props: MyPostsPropsType) => {
+    const postsElements = props.posts.map(post =>
         <Post key={post.id} id={post.id} message={post.message} likesCount={post.likesCount}/>)
 
     const addNewPost = (values: any) => {
@@ -21,20 +17,22 @@ const MyPosts = (props: MyPostsPropsType) => {
     return (
         <div className={s.postBlock}>
             <h3>My Posts</h3>
-            <AddNewPostFormRedux onSubmit={addNewPost} />
+            <AddNewPostFormRedux onSubmit={addNewPost}/>
             <div className={s.posts}>
                 {postsElements}
             </div>
         </div>
     );
 }
-export default MyPosts;
 
+
+const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<MyPostsPropsType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name={"newPostText"}/>
+                <Field name={"newPostText"} component={Textarea} placeholder={"Post Message"}
+                       validate={[required, maxLength10]}/>
                 {/*<textarea onChange={newTextChange} value={props.message}/>*/}
             </div>
             <div>
@@ -44,5 +42,4 @@ const AddNewPostForm: React.FC<InjectedFormProps<MyPostsPropsType>> = (props) =>
     )
 }
 const AddNewPostFormRedux = reduxForm<MyPostsPropsType>({form: "ProfileAddNewPostForm"})(AddNewPostForm)
-
 

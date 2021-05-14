@@ -38,7 +38,7 @@ export let initialsState = {
     currentPage: 1,
     isFetching: true,
     followingInProgress: [] as Array<number>
-    }
+}
 
 export type usersStateType = typeof initialsState
 
@@ -97,13 +97,13 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 
 export const getUsers = (currentPage: number | string, pageSize: number) => {
     return (dispatch: Dispatch) => {
-    dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-        dispatch(toggleIsFetching(false));
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsersCount(data.totalCount));
-    })
-}}
+        dispatch(toggleIsFetching(true));
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        })
+    }}
 export const follow = (userId: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))

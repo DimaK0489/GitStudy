@@ -2,7 +2,6 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/preloader/preloder";
 import ProfileStatus from "./ProfileStatus";
-import {ProfileType} from "../../../redux/profile-reducer";
 
 type ProfileInfoPropsType = {
     profile: any

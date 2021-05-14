@@ -10,14 +10,16 @@ import {Store} from "redux";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HederContainer";
-import {Login} from "./components/Login/login";
-import  UsersContainer  from './components/Users/UsersContainer';
+import UsersContainer  from './components/Users/UsersContainer';
+import { Login } from './components/Login/login';
+
 
 export type AppPropsType = {
     store: Store
 }
 
 function App() {
+
     return (
         <div className="app-wrapper">
             <HeaderContainer />
@@ -29,7 +31,7 @@ function App() {
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
-                <Route path={"/login"} render={() => <Login />}/>
+                <Route path={"/loginIN"} render={() => <Login />}/>
             </div>
         </div>
     );

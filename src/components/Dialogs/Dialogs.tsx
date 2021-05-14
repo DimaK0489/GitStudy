@@ -1,37 +1,22 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
-import {DialogType, MessageType,} from "../../redux/store";
 import Message from "./Message/Message";
-import {Redirect} from "react-router-dom";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import { DialogsType } from "../../redux/dialogs-reducer";
+import {DialogsPropsType} from "./DialogsContainer";
 
-type DialogsPropsType = {
-    messagePege: DialogsType
-    addMessage: (values: string) => void
-    isAuth: boolean
-    //onMessageChange: (newText: string) => void
-    //newMessagesText: string
-}
 
 function Dialogs(props: DialogsPropsType) {
-    let state = props.messagePege
+    const state = props.dialogsPage
     const dialogsElements = state.dialogs.map((d) =>
-        <DialogItem key={d.id} name={d.name} id={d.id}/>);
-    const messageElements = state.messagesData.map((message) =>
+        <DialogItem key={d.id} id={d.id} name={d.name}/>);
+    const messageElements = state.messages.map((message) =>
         <Message key={message.id} message={message.message}/>);
 
-    // const addMessage = () => {
-    //     props.addMessage()
-    // }
-    // const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //     props.onMessageChange(e.currentTarget.value)
-    // }
     const addNewMessage = (values: any) => {
         props.addMessage(values.newMessagesText)
     }
-    if (props.isAuth) return <Redirect to={"/login"}/>;
+    /*if (props.isAuth) return <Redirect to={"/login"}/>;*/
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

@@ -20,7 +20,7 @@ export let initialsState = {
     ],
     profile: null,
     userId: 0,
-    status: " ",
+    status: " "
 }
 export type ProfileType = typeof initialsState
 

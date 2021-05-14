@@ -5,20 +5,20 @@ import {sidebarReducer} from "./sidebar-reducer";
 import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
-import { reducer as formReducer } from 'redux-form'
 
-export type ReduxStateType = ReturnType<typeof reducer>
 
-let reducer = combineReducers({
+export type ReduxStateType = ReturnType<typeof rootReducer>
+
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    // form: formReducer
 });
 
-let store = createStore(reducer, applyMiddleware(thunkMiddleware));
+export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 // @ts-ignore
 window.store = store
 export default store;

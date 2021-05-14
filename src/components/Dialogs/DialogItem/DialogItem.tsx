@@ -2,7 +2,6 @@ import React from "react";
 import s from "./../Dialogs.module.css"
 import {NavLink} from "react-router-dom";
 
-
 type DialogsItemPropsType = {
     id: string,
     name: string
@@ -14,8 +13,5 @@ function DialogItem(props: DialogsItemPropsType) {
         </div>
     );
 }
-
-
-
 
 export default DialogItem;

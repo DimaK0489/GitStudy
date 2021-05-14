@@ -1,14 +1,19 @@
 import {v1} from "uuid";
 
-const ADD_MESSAGE = "ADD-MESSAGE"
-//const CHANGE_NEW_MESSAGE = "CHANGE-NEW-MESSAGE"
 
-export const addMessageAC = (newMessagesText: string) => ({type: ADD_MESSAGE, newMessagesText} as const)
-// export const onMessageChangeAC = (newText: string) => ({type: CHANGE_NEW_MESSAGE, newText: newText} as const)
+export type ActionsType = ReturnType<typeof addMessageAC>
 
-export type ActionsType =
-    | ReturnType<typeof addMessageAC>
-    // | ReturnType<typeof onMessageChangeAC>
+export type DialogsInitialStateType = typeof initialState
+
+type MessageType = {
+    id: string
+    message: string
+}
+
+type DialogsType = {
+    id: string
+    name: string
+}
 
 export let initialState = {
     dialogs: [
@@ -18,31 +23,30 @@ export let initialState = {
         {id: v1(), name: "Juliya"},
         {id: v1(), name: "Dimas"},
         {id: v1(), name: "Maks"}
-    ],
-    messagesData: [
+    ]as DialogsType[],
+    messages: [
         {id: v1(), message: "Hello my friends"},
         {id: v1(), message: "How are you"},
         {id: v1(), message: "Sorry i am latte"},
         {id: v1(), message: "React very easy"},
         {id: v1(), message: "Good night"},
-    ]
+    ] as MessageType[]
 }
-export type DialogsType = typeof initialState
-
-export const dialogsReducer = (state: DialogsType = initialState, action: ActionsType): DialogsType => {
+export const dialogsReducer = (state: DialogsInitialStateType = initialState, action: ActionsType): DialogsInitialStateType => {
     switch (action.type) {
         case "ADD-MESSAGE":
-            //let newMessage = action.newMessagesText
+            const newMessages: MessageType = {
+                id: v1(),
+                message: action.newMessagesText,
+            }
             return {
                 ...state,
-                messagesData: [...state.messagesData, {id:v1(), message: action.newMessagesText}]
-            };
-        // case "CHANGE-NEW-MESSAGE":
-        //     return {
-        //         ...state,
-        //         newMessagesText: action.newText
-        //     }
+                messages: [...state.messages, newMessages],
+            }
+
         default:
             return state
     }
 }
+
+export const addMessageAC = (newMessagesText: string) => ({type: "ADD-MESSAGE", newMessagesText} as const)
