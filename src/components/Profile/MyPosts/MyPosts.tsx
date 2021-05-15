@@ -25,15 +25,15 @@ export const MyPosts = (props: MyPostsPropsType) => {
     );
 }
 
-
 const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<MyPostsPropsType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field name={"newPostText"} component={Textarea} placeholder={"Post Message"}
+                <Field name={"newPostText"}
+                       component={Textarea}
+                       placeholder={"Post Message"}
                        validate={[required, maxLength10]}/>
-                {/*<textarea onChange={newTextChange} value={props.message}/>*/}
             </div>
             <div>
                 <button>Add post</button>
