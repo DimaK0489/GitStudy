@@ -1,41 +1,25 @@
 import React from "react";
-import {Field, InjectedFormProps, reduxForm } from "redux-form";
-import {Input} from "../common/formControls/FormsControls";
+import {LoginReduxForm} from "./loginForm";
+import {Redirect} from "react-router-dom";
 
-type FormDataType = {
-    login: string
+export type FormDataType = {
+    email: string
     password: string
     rememberMe: boolean
 }
 
 export const Login = () => {
     const onSubmit = (formData: FormDataType) => {
-
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
     }
     return <div>
         <h1>Login</h1>
-        <LoginReduxForm onSubmit={onSubmit} />
+        <LoginReduxForm onSubmit={onSubmit}/>
     </div>
 }
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={"login"} name={"login"} component={Input} validate={[require]}/>
-            </div>
-            <div>
-                <Field placeholder={"Password"} name={"password"} component={Input} validate={[require]}/>
-            </div>
-            <div>
-                <Field type={"checkbox"} name={"rememberMe"} component={Input}/> Remember Me
-            </div>
-            <div>
-                <button>Login</button>
-            </div>
-        </form>
-    )
-}
-export const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
 
 
 
