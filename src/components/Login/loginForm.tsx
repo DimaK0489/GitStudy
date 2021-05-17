@@ -1,7 +1,7 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from "../common/formControls/FormsControls";
-import {FormDataType} from "./login";
+import {FormDataType} from "./loginPage";
 import style from "./../common/formControls/FormsControls.module.css"
 
 
@@ -30,7 +30,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 // const mapStateToProps = (state:ReduxStateType) =>  ({
 //     isAuth: state.auth.isAuth
 // })
-// export default connect (mapStateToProps,{login}) (Login)
+// export default connect (mapStateToProps,{login}) (LoginPage)
 const LoginReduxForm = reduxForm<FormDataType>(
     //уникальное имя
     {form: 'login'})(LoginForm)

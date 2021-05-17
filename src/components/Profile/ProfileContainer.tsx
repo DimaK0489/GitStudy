@@ -1,6 +1,6 @@
 import React from "react";
 import Profile from "./Profile";
-import {connect} from "react-redux";
+import {connect, ConnectedProps} from "react-redux";
 import {getStatus, getUserProfile, ProfileType, updateStatus} from "../../redux/profile-reducer";
 import {ReduxStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
@@ -10,29 +10,23 @@ import {compose} from "redux";
 type PathParamType = {
     userId: string
 }
-type MapStateToPropsType = {
-    profile: ProfileType | null
-    status: string
-    authorizedUserId: any
-}
-type MapDispatchToPropsType = {
-    getUserProfile: (userId: number) => void
-    getStatus: (userId: number) => void
-    updateStatus: (status: string) => void
-}
-type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType
+type PropsType = RouteComponentProps<PathParamType> & ProfilePropsType
 
-type ProfileContainerPropsType = RouteComponentProps<PathParamType> & OwnPropsType
-
-class ProfileContainer extends React.Component<ProfileContainerPropsType> {
+class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
-        let userId = Number(this.props.match.params.userId);
-        if (!userId && this.props.profile) {
-            userId = this.props.authorizedUserId
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = this.props.authorizedUserId ? this.props.authorizedUserId.toString() : ''
+            if (!userId) {
+                this.props.history.push("/login")
+            }
         }
+        // @ts-ignore
         this.props.getUserProfile(userId);
-            this.props.getStatus(userId)
+        // @ts-ignore
+        this.props.getStatus(userId)
     }
+
     render() {
         return (
             <div>
@@ -45,17 +39,30 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
     }
 }
 
-let mapStateToProps = (state: ReduxStateType) => {
+let mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         authorizedUserId: state.auth.id,
-        isAuth: state.auth.isAuth
+        auth: state.auth.isAuth
     }
 };
+type MapStateToPropsType = {
+    profile: ProfileType | null
+    status: string
+    authorizedUserId: number | null
+    auth: boolean
+}
+export type ProfilePropsType = ConnectedProps<typeof connector>;
+
+const connector = connect(mapStateToProps, {
+    getUserProfile,
+    getStatus,
+    updateStatus,
+})
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
+    connector,
     withRouter,
     withAuthRedirect
 )(ProfileContainer)

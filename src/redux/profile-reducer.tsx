@@ -8,7 +8,6 @@ const SET_STATUS = "SET-STATUS"
 
 export type ActionsType =
     | ReturnType<typeof addPostAC>
-    //| ReturnType<typeof newTextChangeAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
 
@@ -45,11 +44,13 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
             return state
     }
 }
+
+//action
 export const addPostAC = (newPostText:string) => ({type: ADD_POST, newPostText} as const)
-//export const newTextChangeAC = (newText: string) => ({type: CHANGE_NEW_TEXT, newText: newText} as const)
 export const setUserProfileAC = (profile: null) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 
+//Thunk
 export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
     usersAPI.getProfile(userId).then(response => {
         dispatch(setUserProfileAC(response.data));

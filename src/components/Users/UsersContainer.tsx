@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
 import {follow, getUsers, unfollow, UsersType} from "../../redux/users-reducer";
 import {Preloader} from "../common/preloader/preloder";
-import {withAuthRedirect} from "../../Hoc/WithAuthRedirect";
 import {compose} from "redux";
 
 type MSTPType = {
@@ -50,7 +49,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 }
 
-function mapStateToProps(state: ReduxStateType): MSTPType {
+const mapStateToProps = (state: ReduxStateType): MSTPType =>  {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -61,9 +60,19 @@ function mapStateToProps(state: ReduxStateType): MSTPType {
     }
 }
 
+/*const mapStateToProps = (state: ReduxStateType): MSTPType =>  {
+    return {
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
+    }
+}*/
+
 export default compose<React.ComponentType>(
     connect(mapStateToProps,  {follow, unfollow, getUsers}),
-    withAuthRedirect
 )(UsersContainer)
 
 
