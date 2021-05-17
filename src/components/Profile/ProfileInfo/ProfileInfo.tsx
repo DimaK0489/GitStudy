@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfileInfo.module.css";
 import {Preloader} from "../../common/preloader/preloder";
-import ProfileStatus from "./ProfileStatus";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoPropsType = {
     profile: any
@@ -9,7 +9,7 @@ type ProfileInfoPropsType = {
     updateStatus: (status: string) => void
 }
 
-function ProfileInfo(props: ProfileInfoPropsType) {
+export const ProfileInfo = (props: ProfileInfoPropsType) => {
     if (!props.profile){
         return <Preloader />
     }
@@ -20,10 +20,9 @@ function ProfileInfo(props: ProfileInfoPropsType) {
             </div>
             <div className={s.descriptionBlock}>
                 <img src={props.profile.photos.large} alt={""}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     );
 }
 
-export default ProfileInfo;
