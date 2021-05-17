@@ -1,13 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import s from "./Header.module.css";
-import {logOut} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
-    logOut: any;
+    logOut: () => void;
     id: number | null
     isAuth: boolean
-    login: any
+    login: string | null
     email: string | null
 }
 

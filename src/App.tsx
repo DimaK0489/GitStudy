@@ -12,7 +12,7 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HederContainer";
 import UsersContainer  from './components/Users/UsersContainer';
 import { Login } from './components/Login/login';
-
+import {login} from "./redux/auth-reducer";
 
 export type AppPropsType = {
     store: Store
@@ -31,7 +31,7 @@ function App() {
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
-                <Route path={"/loginIN"} render={() => <Login />}/>
+                <Route path={"/loginI"} render={() => <Login login={login} isAuth={false}/>}/>
             </div>
         </div>
     );
