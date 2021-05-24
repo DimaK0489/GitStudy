@@ -7,7 +7,7 @@ import {Textarea} from "../../common/formControls/FormsControls";
 import {MyPostsPropsType} from "./MyPostsContainer";
 
 
-export const MyPosts = (props: MyPostsPropsType) => {
+export const MyPosts = React.memo((props: MyPostsPropsType) => {
     const postsElements = props.posts.map(post =>
         <Post key={post.id} id={post.id} message={post.message} likesCount={post.likesCount}/>)
 
@@ -23,7 +23,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
             </div>
         </div>
     );
-}
+})
 
 const maxLength10 = maxLengthCreator(10)
 const AddNewPostForm: React.FC<InjectedFormProps<MyPostsPropsType>> = (props) => {
