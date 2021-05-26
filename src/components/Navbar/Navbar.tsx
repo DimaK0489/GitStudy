@@ -1,10 +1,9 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from "./Navbar.module.css";
-import {SidebarProps} from "../../redux/store";
 
 type NavbarPropsType = {
-    friends: Array<SidebarProps>
+
 }
 
 function Navbar(props: NavbarPropsType) {
@@ -27,9 +26,6 @@ function Navbar(props: NavbarPropsType) {
             </div>
             <div className={s.item}>
                 <NavLink to={"/settings"} activeClassName={s.activeLink}>Settings</NavLink>
-            </div>
-            <div className={s.sidebar}>
-                {props.friends.map(t => t.name)}
             </div>
         </nav>
 

@@ -53,26 +53,24 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
 }
 
 //action
-export const addPostAC = (newPostText:string) => ({type: ADD_POST, newPostText} as const)
+export const addPostAC = (newPostText: string) => ({type: ADD_POST, newPostText} as const)
 export const setUserProfileAC = (profile: null) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
 
 //Thunk
-export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
-    usersAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfileAC(response.data));
-    })
+export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
+    let response = await usersAPI.getProfile(userId)
+    dispatch(setUserProfileAC(response.data));
+
 }
-export const getStatus = (userId: number) => (dispatch: Dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
-        dispatch(setStatusAC(response.data));
-    })
+export const getStatus = (userId: number) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatusAC(response.data));
 }
-export const updateStatus = (status: string) => (dispatch: Dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
-        if(response.data.resultCode === 0) {
-            dispatch(setStatusAC(status));
-        }
-    })
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatusAC(status));
+    }
 }

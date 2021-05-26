@@ -37,7 +37,7 @@ class App extends React.Component<AppPropsType> {
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
-                <Navbar friends={store.getState().sidebar.friends}/>
+                <Navbar />
                 <div className={"app-wrapper-content"}>
                     <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
                     <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
@@ -45,7 +45,7 @@ class App extends React.Component<AppPropsType> {
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
                     <Route path={"/settings"} render={() => <Settings/>}/>
-                    <Route path={"/loginI"} render={() => <LoginPage login={login} isAuth={false}/>}/>
+                    <Route path={"/loginIn"} render={() => <LoginPage login={login} isAuth={false}/>}/>
                 </div>
             </div>
         );

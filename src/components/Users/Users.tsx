@@ -12,12 +12,6 @@ export type UsersPropsType = {
     totalUsersCount: number
     onPageChanged: (p: number) => void
     followingInProgress: Array<number>
-    //currentPage: number | string
-    //setCurrentPage: (currentPage: number) => void
-    //setTotalUsersCount: (totalCount: number) => void
-    //toggleFollowingProgress: (isFetching: boolean, id: number) => void
-    //setUsers: (users: []) => void
-
 }
 
 let Users = (props: UsersPropsType) => {

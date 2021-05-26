@@ -2,7 +2,7 @@ import React from "react";
 import Users from "./Users";
 import {connect} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {follow, requestUsers, unfollow, UsersType} from "../../redux/users-reducer";
+import {follow, requestUsersTC, unfollow, UsersType} from "../../redux/users-reducer";
 import {Preloader} from "../common/preloader/preloder";
 import {compose} from "redux";
 import {
@@ -80,7 +80,7 @@ const mapStateToProps = (state: ReduxStateType): MSTPType =>  {
 }*/
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps,  {follow, unfollow, requestUsers}),
+    connect(mapStateToProps,  {follow, unfollow, requestUsers: requestUsersTC}),
 )(UsersContainer)
 
 

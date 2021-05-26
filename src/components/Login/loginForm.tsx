@@ -26,11 +26,7 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
         </form>
     )
 }
-// export const LoginReduxForm = reduxForm<FormDataType>({form: "login"})(LoginForm)
-// const mapStateToProps = (state:ReduxStateType) =>  ({
-//     isAuth: state.auth.isAuth
-// })
-// export default connect (mapStateToProps,{login}) (LoginPage)
+
 const LoginReduxForm = reduxForm<FormDataType>(
     //уникальное имя
     {form: 'login'})(LoginForm)
