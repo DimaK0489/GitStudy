@@ -5,14 +5,16 @@ import {profileAPI, usersAPI} from "../api/api";
 const ADD_POST = "ADD-POST"
 const SET_USER_PROFILE = "SET-USER-PROFILE"
 const SET_STATUS = "SET-STATUS"
+const DELETE_POST = "DELETE_POST"
 
 export type ActionsType =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof deletePostAC>
 
 export let initialsState = {
-    postsDate: [
+    postsData: [
         {id: v1(), message: "How are you", likesCount: 8},
         {id: v1(), message: "It is my first post", likesCount: 6},
         {id: v1(), message: "Hello", likesCount: 12},
@@ -29,7 +31,7 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
             const newPost = {id: v1(), message: action.newPostText, likesCount: 0}
             return {
                 ...state,
-                postsDate: [...state.postsDate, newPost],
+                postsData: [...state.postsData, newPost],
             }
         case "SET-USER-PROFILE":
             return {
@@ -40,6 +42,11 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
                 ...state,
                 status: action.status,
             }
+        case "DELETE_POST":
+            return {
+                ...state,
+                postsData: state.postsData.filter(p => p.id !== action.postId)
+            }
         default:
             return state
     }
@@ -49,6 +56,7 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
 export const addPostAC = (newPostText:string) => ({type: ADD_POST, newPostText} as const)
 export const setUserProfileAC = (profile: null) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
+export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
 
 //Thunk
 export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {

@@ -16,7 +16,7 @@ type MapDispatchToPropsType = {
 export type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
-    return {posts: state.profilePage.postsDate}
+    return {posts: state.profilePage.postsData}
 
 }
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
