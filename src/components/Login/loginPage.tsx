@@ -18,7 +18,7 @@ export type FormDataType = {
     rememberMe: boolean
 }
 
-export const LoginPage = (props: LoginType) => {
+const LoginPage = (props: LoginType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe)
     }

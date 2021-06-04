@@ -11,7 +11,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HederContainer";
 import UsersContainer from './components/Users/UsersContainer';
-import {LoginPage} from './components/Login/loginPage';
+import LoginPage from './components/Login/loginPage';
 import {login, logOut} from "./redux/auth-reducer";
 import {connect, ConnectedProps} from "react-redux";
 import {getStatus, getUserProfile, updateStatus} from "./redux/profile-reducer";
@@ -45,7 +45,7 @@ class App extends React.Component<AppPropsType> {
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
                     <Route path={"/settings"} render={() => <Settings/>}/>
-                    <Route path={"/loginIn"} render={() => <LoginPage login={login} isAuth={false}/>}/>
+                    <Route path={"/loginIn"} render={() => <LoginPage />}/>
                 </div>
             </div>
         );

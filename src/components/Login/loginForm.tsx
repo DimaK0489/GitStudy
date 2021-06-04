@@ -29,5 +29,5 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>(
     //уникальное имя
-    {form: 'login'})(LoginForm)
+    {form: "login"})(LoginForm)
 export default LoginReduxForm

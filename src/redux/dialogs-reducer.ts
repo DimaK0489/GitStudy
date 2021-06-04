@@ -1,6 +1,5 @@
 import {v1} from "uuid";
 
-
 export type ActionsType = ReturnType<typeof addMessageAC>
 
 export type DialogsInitialStateType = typeof initialState
@@ -43,7 +42,6 @@ export const dialogsReducer = (state: DialogsInitialStateType = initialState, ac
                 ...state,
                 messages: [...state.messages, newMessages],
             }
-
         default:
             return state
     }
