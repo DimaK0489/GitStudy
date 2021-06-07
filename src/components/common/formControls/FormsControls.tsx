@@ -7,7 +7,6 @@ const FormControl: React.FC<any> = (props) => {
     const hasError = meta.touched && meta.error
     return (
         <div className={`${styles.formControl} ${hasError && styles.error} `}>
-
             <div>
                 {children}
             </div>
