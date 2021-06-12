@@ -29,24 +29,13 @@ export const profileReducer = (state: ProfileType = initialsState, action: Actio
     switch (action.type) {
         case "ADD-POST":
             const newPost = {id: v1(), message: action.newPostText, likesCount: 0}
-            return {
-                ...state,
-                postsData: [...state.postsData, newPost],
-            }
+            return {...state,postsData: [...state.postsData, newPost],}
         case "SET-USER-PROFILE":
-            return {
-                ...state, profile: action.profile
-            }
+            return {...state, profile: action.profile}
         case "SET-STATUS":
-            return {
-                ...state,
-                status: action.status,
-            }
+            return {...state,status: action.status,}
         case "DELETE_POST":
-            return {
-                ...state,
-                postsData: state.postsData.filter(p => p.id !== action.postId)
-            }
+            return {...state,postsData: state.postsData.filter(p => p.id !== action.postId)}
         default:
             return state
     }

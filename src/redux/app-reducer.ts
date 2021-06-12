@@ -11,10 +11,7 @@ export type ActionsType = ReturnType<typeof initializedSuccess>
 export const appReducer = (state: AppType = initialState, action: ActionsType): AppType => {
     switch (action.type) {
         case "APP/INITIALIZED-SUCCESS":
-            return {
-                ...state,
-                initialized: action.payload
-            }
+            return {...state,initialized: action.payload}
         default:
             return state
     }

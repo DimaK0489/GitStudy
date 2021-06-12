@@ -26,7 +26,6 @@ class ProfileContainer extends React.Component<PropsType> {
         // @ts-ignore
         this.props.getStatus(userId)
     }
-
     render() {
         return (
             <div>

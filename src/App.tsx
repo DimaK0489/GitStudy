@@ -11,7 +11,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HederContainer";
 import UsersContainer from './components/Users/UsersContainer';
-import LoginPage from './components/Login/loginPage';
+import {LoginPage} from './components/Login/loginPage';
 import {login, logOut} from "./redux/auth-reducer";
 import {connect, ConnectedProps} from "react-redux";
 import {getStatus, getUserProfile, updateStatus} from "./redux/profile-reducer";
