@@ -3,6 +3,8 @@
     height: 500px;
     border-radius: 5px;
 }
-
+.mainPhoto {
+    max-width: 130px;
+}
 
 

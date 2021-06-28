@@ -21,8 +21,9 @@ import {ReduxStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/preloader/preloder";
 
 
-export type AppPropsType = ConnectedProps<typeof connector>;
-type MapStateToProps = {
+export type AppPropsType = {
+    getAuthUserData: () => void
+    initializeApp: () => void
     initialized: boolean
 }
 
@@ -36,28 +37,22 @@ class App extends React.Component<AppPropsType> {
         }
         return (
             <div className="app-wrapper">
-                <HeaderContainer/>
+                <HeaderContainer getAuthUserData={this.props.getAuthUserData}/>
                 <Navbar />
                 <div className={"app-wrapper-content"}>
                     <Route path={"/dialogs"} render={() => <DialogsContainer/>}/>
                     <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
                     <Route path={"/users"} render={() => <UsersContainer/>}/>
+                    <Route path={"/loginIn"} render={() => <LoginPage/> }/>
                     <Route path={"/news"} render={() => <News/>}/>
                     <Route path={"/music"} render={() => <Music/>}/>
                     <Route path={"/settings"} render={() => <Settings/>}/>
-                    <Route path={"/loginIn"} render={() => <LoginPage />}/>
                 </div>
             </div>
         );
     }
 }
-const mapStateToProps = (state: ReduxStateType): MapStateToProps => ({
-    initialized: state.app.initialized
-})
-const connector = connect(mapStateToProps, {initializeApp})
+const mapStateToProps = (state: ReduxStateType) => ({initialized: state.app.initialized})
 
-export default compose<React.ComponentType>(
-    withRouter,
-    connector,
-    connect(null, {initializeApp})) (App);
+export default compose<React.ComponentType>(withRouter,connect(mapStateToProps, {initializeApp})) (App);
 
