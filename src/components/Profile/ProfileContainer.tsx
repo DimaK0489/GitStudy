@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {
     getStatus,
     getUserProfile,
-    ProfileType,
     savePhoto,
     saveProfile,
     updateStatus
@@ -13,6 +12,7 @@ import {ReduxStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../Hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {ProfileType} from "../../redux/Types";
 
 type PathParamType = {
     userId: string

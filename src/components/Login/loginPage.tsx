@@ -22,12 +22,8 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, err
             {createField("Password", "password", [required], Input, {type:"password"})}
             {createField(null, "rememberMe", [], Input, {type: "checkbox"}, "remember me")}
 
-            {error && <div className={style.formSummaryError}>
-                {error}
-            </div> }
-            <div>
-                <button>Login</button>
-            </div>
+            {error && <div className={style.formSummaryError}>{error}</div> }
+            <div><button>Login</button></div>
         </form>
     )
 };
@@ -43,14 +39,17 @@ const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     }
-    debugger
-
-    if (props.isAuth) <Redirect to={"/profile"}/>
+    if (props.isAuth) {
+        console.log('REDIRECT')
+        return (
+            <Redirect to={'/profile'}/>
+        )
+    }
     return (
-        <div>
+        <>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
-        </div>
+        </>
     )
 };
 

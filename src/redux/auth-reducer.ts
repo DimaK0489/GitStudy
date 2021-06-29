@@ -1,4 +1,3 @@
-import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form"
 import {ReduxStateType} from "./redux-store";
@@ -48,8 +47,8 @@ export const login = (email: string, password: string, rememberMe: boolean = fal
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData());
     } else {
-        let message = response.data.messages.length > 0 ?
-            response.data.messages[0]
+        let message = response.data.messages.length > 0
+            ?response.data.messages[0]
             : "Some error"
         dispatch(stopSubmit("login", {_error: "Common error"}) as ActionsType);
     }

@@ -108,7 +108,7 @@ export const followUnfollowFlow = async (dispatch: Dispatch, userId: number, api
     dispatch(toggleFollowingProgress(false, userId))
 }
 export const follow = (userId: number) => async (dispatch: Dispatch) => {
-    await followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), followSuccess)
+    await followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess)
 }
 export const unfollow = (userId: number) => async (dispatch: Dispatch) => {
     await followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess)

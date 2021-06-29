@@ -4,42 +4,24 @@ import {Preloader} from "../../common/preloader/preloder";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/Image/user.png"
 import {ProfileDataForm} from "./ProfileDataForm";
-import { savePhoto } from "../../../redux/profile-reducer";
+import {savePhoto, saveProfile} from "../../../redux/profile-reducer";
+import {ProfileType} from "../../../redux/Types";
 
 export type ProfileInfoPropsType = {
-    profile: any
+    profile: ProfileType | null
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (files: File) => void
+    saveProfile: () => void
 }
-export type UserProfileType = {
-    aboutMe: string
-    contacts: {
-        facebook: string
-        website: string
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: string
-        github: string
-        mainLink: string
-    }
-    lookingForAJob: boolean,
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: {
-        small: string
-        large: string
-    }
-}
+
 type ContactPropsType = {
     contactTitle: string
     contactValue: string
 }
 type ProfileDataPropsType = {
-    profile: UserProfileType
+    profile: ProfileType
     isOwner: boolean
     goToEditMode: () => void
 }
@@ -53,7 +35,14 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
     const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             savePhoto(e.target.files[0])
+            //setEditMode(false)
         }
+    }
+    const onSubmit = (formData: any) => {
+        // @ts-ignore
+        saveProfile(formData).then(() => {
+            setEditMode(false)
+        })
     }
     return (
         <div>
@@ -65,7 +54,7 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} alt={""}/>
                 {props.isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}
                 {editMode
-                    ? <ProfileDataForm profile={props.profile}/>
+                    ? <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={ () => {setEditMode(true)}} profile={props.profile} isOwner={props.isOwner}/>}
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>

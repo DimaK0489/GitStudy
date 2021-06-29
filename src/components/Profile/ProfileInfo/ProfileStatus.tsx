@@ -1,6 +1,8 @@
 import React, {ChangeEvent} from "react";
+import {ProfileType} from "../../../redux/Types";
 
 type ProfileStatusType = {
+    profile: ProfileType
     status: string
     updateStatus: (status: string) => void
 }
@@ -42,10 +44,11 @@ class ProfileStatus extends React.Component<ProfileStatusType> {
                     value={this.state.status}/>}
             </div>
             <div>
-                {!this.state.editMode &&<span  onDoubleClick={this.activatedMode.bind(this)}>{this.props.status}</span>}
+                {!this.state.editMode &&<span
+                    onDoubleClick={this.activatedMode.bind(this)}>{this.props.status}
+                </span>}
                 {!this.state.editMode && <span
-                    onDoubleClick={this.activatedMode}>
-                    {this.props.status || '_______'}
+                    onDoubleClick={this.activatedMode}>{this.props.status || '_______'}
                 </span>}
 
             </div>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ProfileType} from "../redux/profile-reducer";
+import {ProfileType} from "../redux/Types";
 
 const instance = axios.create({
     withCredentials: true,
@@ -18,7 +18,8 @@ export const usersAPI = {
         return instance.post(`follow/${userId}`)
     },
     unfollow(userId: number) {
-        return instance.delete(`unfollow/${userId}`)
+        return instance.delete(`follow/${userId}`)
+
     },
     getProfile(userId: number) {
         return profileAPI.getProfile(userId)

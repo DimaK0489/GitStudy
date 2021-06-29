@@ -1,4 +1,3 @@
-import React from "react";
 import {addPostAC} from "../../../redux/profile-reducer";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
