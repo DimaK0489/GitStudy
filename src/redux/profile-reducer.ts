@@ -15,7 +15,7 @@ export type ActionsType =
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof savePhotoSuccess>
 
-export let initialsState = {
+let initialsState = {
     postsData: [
         {id: v1(), message: "How are you", likesCount: 8},
         {id: v1(), message: "It is my first post", likesCount: 6},
@@ -26,6 +26,11 @@ export let initialsState = {
     status: " "
 }
 export type ProfileType = typeof initialsState
+export type PhotosType = {
+    small: string
+    large:string
+}
+
 
 export const profileReducer = (state: ProfileType = initialsState, action: ActionsType): ProfileType => {
     switch (action.type) {
@@ -52,7 +57,7 @@ export const addPostAC = (newPostText: string) => ({type: ADD_POST, newPostText}
 export const setUserProfileAC = (profile: any) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
 export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
-export const savePhotoSuccess = (photos: any) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
+export const savePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
 
 //Thunk
 export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => {
@@ -69,9 +74,17 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
         dispatch(setStatusAC(status));
     }
 }
-export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
+export const savePhoto = (file: File) => async (dispatch: Dispatch) => {
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+}
+export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.saveProfile(profile)
+
+    if (response.data.resultCode === 0) {
+        //dispatch(savePhotoSuccess(response.data.data.photos));
+
     }
 }

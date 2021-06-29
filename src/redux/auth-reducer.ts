@@ -46,10 +46,10 @@ export const getAuthUserData = (): ThunkType => async (dispatch: ThunkDispatchTy
 export const login = (email: string, password: string, rememberMe: boolean = false) => async (dispatch: ThunkDispatchType) => {
     let response = await authAPI.login(email, password, rememberMe = false)
     if (response.data.resultCode === 0) {
-        dispatch(getAuthUserData())
+        dispatch(getAuthUserData());
     } else {
-        let message = response.data.messages.length > 0
-            ? response.data.messages[0]
+        let message = response.data.messages.length > 0 ?
+            response.data.messages[0]
             : "Some error"
         dispatch(stopSubmit("login", {_error: "Common error"}) as ActionsType);
     }

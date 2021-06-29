@@ -4,15 +4,16 @@ import {Preloader} from "../../common/preloader/preloder";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/Image/user.png"
 import {ProfileDataForm} from "./ProfileDataForm";
+import { savePhoto } from "../../../redux/profile-reducer";
 
-type ProfileInfoPropsType = {
+export type ProfileInfoPropsType = {
     profile: any
     status: string
     updateStatus: (status: string) => void
     isOwner: boolean
-    savePhoto: (files: any) => void
+    savePhoto: (files: File) => void
 }
-export type userProfileType = {
+export type UserProfileType = {
     aboutMe: string
     contacts: {
         facebook: string
@@ -38,7 +39,7 @@ type ContactPropsType = {
     contactValue: string
 }
 type ProfileDataPropsType = {
-    profile: userProfileType
+    profile: UserProfileType
     isOwner: boolean
     goToEditMode: () => void
 }
@@ -50,8 +51,8 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
         return <Preloader/>
     }
     const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.currentTarget.files) {
-            props.savePhoto(e.currentTarget.files[0])
+        if (e.target.files) {
+            savePhoto(e.target.files[0])
         }
     }
     return (
@@ -66,7 +67,6 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 {editMode
                     ? <ProfileDataForm profile={props.profile}/>
                     : <ProfileData goToEditMode={ () => {setEditMode(true)}} profile={props.profile} isOwner={props.isOwner}/>}
-
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
@@ -105,4 +105,5 @@ export const ProfileData = (props: ProfileDataPropsType) => {
         </div>
     )
 }
+
 
