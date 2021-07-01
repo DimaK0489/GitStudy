@@ -1,18 +1,8 @@
 import {v1} from "uuid";
+import {DialogsType, MessageType} from "./Types";
 
 export type ActionsType = ReturnType<typeof addMessageAC>
-
 export type DialogsInitialStateType = typeof initialState
-
-type MessageType = {
-    id: string
-    message: string
-}
-
-type DialogsType = {
-    id: string
-    name: string
-}
 
 export let initialState = {
     dialogs: [

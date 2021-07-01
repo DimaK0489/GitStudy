@@ -1,12 +1,13 @@
 import React from "react";
 import {Users} from "./Users";
 import {connect} from "react-redux";
-import {ReduxStateType} from "../../redux/redux-store";
-import {follow, requestUsersTC, unfollow, UsersType} from "../../redux/users-reducer";
-import {Preloader} from "../common/preloader/preloder";
+import {AppStateType} from "../../redux/redux-store";
+import {follow, requestUsersTC, unfollow} from "../../redux/users-reducer";
+import {Preloader} from "../common/preloader/Preloder";
 import {compose} from "redux";
 import {getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUserCount, getUsers}
     from "../../redux/users selectors";
+import {UsersType} from "../../redux/Types";
 
 type MSTPType = {
     users: Array<UsersType>
@@ -53,7 +54,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 }
 
-const mapStateToProps = (state: ReduxStateType): MSTPType =>  {
+const mapStateToProps = (state: AppStateType): MSTPType =>  {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

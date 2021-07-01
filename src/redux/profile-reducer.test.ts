@@ -1,8 +1,6 @@
-import {addPostAC, deletePostAC, profileReducer, ProfileType} from "./profile-reducer";
+import {addPostAC, deletePostAC, profileReducer} from "./profile-reducer";
 
-let initialsState: ProfileType
-
-beforeEach(() => {
+let initialsState = beforeEach(() => {
     initialsState = {
         postsData: [
             {id: "1", message: "How are you", likesCount: 8},

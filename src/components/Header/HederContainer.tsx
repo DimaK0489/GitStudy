@@ -1,26 +1,33 @@
-import React from "react";
-import Header from "./Heder";
-import {connect} from "react-redux";
+import React from 'react'
+import {connect, ConnectedProps} from 'react-redux'
+import {Header} from "./Header";
+import {AppStateType} from "../../redux/redux-store";
 import {logOut} from "../../redux/auth-reducer";
-import {ReduxStateType} from "../../redux/redux-store";
 
-type AuthPropsType = MapDispatchPropsType & MapStatePropsType
-export type MapStatePropsType = {
-    isAuth: boolean,
-    login: string | null
-}
-export  type MapDispatchPropsType = {
-    logout: () => void
-}
+// types
+type TProps = ConnectedProps<typeof connector>
 
-class HeaderContainer extends React.Component<any> {
+class HeaderContainer extends React.Component<TProps, AppStateType> {
+
     render() {
-        return <Header {...this.props.state} />
+        const {isAuth, login, logOut} = this.props
+
+        return (
+            <Header
+                isAuth={isAuth}
+                login={login}
+                logOut={logOut}/>
+        )
     }
 }
 
-const mapStateToProps = (state: ReduxStateType): MapStatePropsType => ({
-    isAuth: state.auth.isAuth,
-    login: state.auth.login
-})
-export default connect(mapStateToProps, {logOut})(HeaderContainer);
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        isAuth: state.auth.isAuth,
+        login: state.auth.login,
+    }
+}
+
+const connector = connect(mapStateToProps, {logOut})
+export default connector(HeaderContainer)
+

@@ -5,21 +5,10 @@ import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {createField, Input} from "../common/formControls/FormsControls";
 import {required} from "../../utils/validators";
-import {ReduxStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../redux/redux-store";
 import {login} from "../../redux/auth-reducer";
+import {FormDataType, LoginPropsType} from "../../redux/Types";
 
-type LoginPropsType = {
-    isAuth: boolean
-    captchaUrl: string | null
-    login: (email: string, password: string, rememberMe: boolean, captcha: string | null) => void
-}
-
-type FormDataType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha: string | null
-}
 
 export const LoginForm: FC<InjectedFormProps<FormDataType, LoginReduxFormPropsType> & LoginReduxFormPropsType> = React.memo((props) => {
     const {handleSubmit, error, captchaUrl} = props
@@ -60,7 +49,7 @@ const Login: FC<LoginPropsType> = React.memo((props) => {
     )
 })
 
-const mapStateToProps = (state: ReduxStateType) => ({
+const mapStateToProps = (state: AppStateType) => ({
     captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
 })

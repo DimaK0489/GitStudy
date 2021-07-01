@@ -5,7 +5,7 @@ export type PaginatorPropsType = {
     pageSize: number
     totalUsersCount: number
     onPageChanged: (p: number) => void
-    currentPage: any
+    currentPage: 10
 }
 
 export const Paginator = (props: PaginatorPropsType) => {
@@ -24,10 +24,11 @@ export const Paginator = (props: PaginatorPropsType) => {
             {pages
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map((p) => {
-                // @ts-ignore
-                return <span className={props.currentPage === p && style.selectedPage}
-                             onClick={(e) => { props.onPageChanged(p)}}>{p}</span>
-            })}
+                    return <span key={p} className={props.currentPage === p ? style.selectedPage : ''}
+                                 onClick={(e) => {
+                                     props.onPageChanged(p)
+                                 }}>{p}</span>
+                })}
             {pagesCount > portionPages && <button onClick={() => setPortionPages(portionPages + 1)}>Next</button>}
         </div>
     )

@@ -1,18 +1,7 @@
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
+import {UsersType} from "./Types";
 
-export type UsersType = {
-    id: number
-    photos: any
-    followed: boolean
-    name: string
-    status: string
-    location: LocationType
-}
-export type LocationType = {
-    city: string
-    country: string
-}
 export type ActionsType =
     ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
@@ -22,18 +11,17 @@ export type ActionsType =
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof toggleFollowingProgress>
 
-export let initialsState = {
+export const initialsState = {
     users: [] as UsersType[],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
     followingInProgress: [] as Array<number>
 }
-
 export type UsersStateType = typeof initialsState
 
-export const usersReducer = (state: UsersStateType = initialsState, action: ActionsType): UsersStateType => {
+export const usersReducer = (state = initialsState, action: ActionsType): UsersStateType => {
     switch (action.type) {
         case "USERS/FOLLOW":
             return {
@@ -81,15 +69,12 @@ export const unfollowSuccess = (userId: number) => ({type: "USERS/UNFOLLOW", use
 export const setUsers = (users: Array<UsersType>) => ({type: "USERS/SET_USERS", users} as const)
 export const setCurrentPage = (currentPage: number) => ({type: "USERS/SET_CURRENT_PAGE", currentPage} as const)
 export const setTotalUsersCount = (totalUsersCount: number) => ({
-    type: "USERS/SET_TOTAL_USERS_COUNT",
-    count: totalUsersCount
-} as const)
+    type: "USERS/SET_TOTAL_USERS_COUNT",count: totalUsersCount} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: "USERS/TOGGLE IS FETCHING", isFetching} as const)
 export const toggleFollowingProgress = (isFetching: boolean, userId: number) => ({
-    type: "USERS/TOGGLE_IS_FOLLOWING_PROGRESS", isFetching, userId
-} as const)
+    type: "USERS/TOGGLE_IS_FOLLOWING_PROGRESS", isFetching, userId} as const)
 
-//thunk
+//thunks
 export const requestUsersTC = (page: number, pageSize: number) => async (dispatch: Dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(page));
@@ -97,7 +82,6 @@ export const requestUsersTC = (page: number, pageSize: number) => async (dispatc
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
-
 }
 export const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: Function, actionCreator: Function) => {
     dispatch(toggleFollowingProgress(true, userId));

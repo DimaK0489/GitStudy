@@ -1,21 +1,17 @@
 import React from "react";
 import style from './users.module.css'
-import userPhoto from "../../assets/Image/user.png"
+import userPhoto from "../../assets/image/user.png"
 import {NavLink} from "react-router-dom";
-
-export type UserProps = {
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
-    followingInProgress: Array<number>
-    user: any
-}
+import {UserProps} from "../../redux/Types";
 
 export const User = (props: UserProps) => {
-    return <div>
+    return (
+        <>
                 <span>
                     <div>
                         <NavLink to={"/profile/" + props.user.id}>
-                        <img className={style.userPhoto} src={props.user.photos.small != null ? props.user.photos.small : userPhoto}
+                        <img className={style.userPhoto}
+                             src={props.user.photos.small !== null ? props.user.photos.small : userPhoto}
                              alt={""}/>
                         </NavLink>
                     </div>
@@ -33,7 +29,7 @@ export const User = (props: UserProps) => {
                         }
                     </div>
                 </span>
-        <span>
+            <span>
                     <span>
                         <div>{props.user.name}</div>
                         <div>{props.user.status}</div>
@@ -43,7 +39,7 @@ export const User = (props: UserProps) => {
                         <div>{"user.location.city"}</div>
                     </span>
                 </span>
-    </div>
+        </>)
 }
 
 

@@ -1,97 +1,73 @@
 import React, {ChangeEvent, useState} from "react";
-import s from "./ProfileInfo.module.css";
-import {Preloader} from "../../common/preloader/preloder";
+import style from "./ProfileInfo.module.css";
+import {Preloader} from "../../common/preloader/Preloder";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import userPhoto from "../../../assets/Image/user.png"
-import {ProfileDataForm} from "./ProfileDataForm";
-import {savePhoto, saveProfile} from "../../../redux/profile-reducer";
-import {ProfileType} from "../../../redux/Types";
+import userPhoto from "../../../assets/image/user.png"
+import {savePhoto, saveProfile, updateStatus} from "../../../redux/profile-reducer";
+import {ContactPropsType, ProfileDataPropsType, ProfilePropsType, ProfileType} from "../../../redux/Types";
+import ProfileDataForm from "./ProfileDataForm";
 
-export type ProfileInfoPropsType = {
-    profile: ProfileType | null
-    status: string
-    updateStatus: (status: string) => void
-    isOwner: boolean
-    savePhoto: (files: File) => void
-    saveProfile: () => void
-}
 
-type ContactPropsType = {
-    contactTitle: string
-    contactValue: string
-}
-type ProfileDataPropsType = {
-    profile: ProfileType
-    isOwner: boolean
-    goToEditMode: () => void
-}
-
-export const ProfileInfo = (props: ProfileInfoPropsType) => {
+export const ProfileInfo = (props: ProfilePropsType) => {
     const [editMode, setEditMode] = useState<boolean>(false)
 
     if (!props.profile) {
         return <Preloader/>
     }
     const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            savePhoto(e.target.files[0])
-            //setEditMode(false)
+        if (e.currentTarget.files && e.currentTarget.files.length) {
+            savePhoto(e.currentTarget.files[0])
         }
     }
-    const onSubmit = (formData: any) => {
-        // @ts-ignore
-        saveProfile(formData).then(() => {
-            setEditMode(false)
-        })
+    const onSubmit = (formData: ProfileType) => {
+        saveProfile(formData)
+        setEditMode(false)
+    }
+    const onEditMode = () => {
+        setEditMode(true)
     }
     return (
-        <div>
-            <div className={s.content}>
-                <img src="https://s1.1zoom.ru/b4855/832/Volvo_XC90_Blue_Metallic_Crossover_514554_1366x768.jpg"
-                     alt={""}/>
-            </div>
-            <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large || userPhoto} className={s.mainPhoto} alt={""}/>
-                {props.isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}
-                {editMode
-                    ? <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
-                    : <ProfileData goToEditMode={ () => {setEditMode(true)}} profile={props.profile} isOwner={props.isOwner}/>}
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-            </div>
+        <div className={style.descriptionBlock}>
+            <ProfileStatusWithHooks status={props.status} updateStatus={updateStatus}/>
+
+            <img src={props.profile.photos.large || userPhoto} className={style.userPhoto} alt={'profile'}/>
+            <div>{props.isOwner && <input type="file" onChange={mainPhotoSelected}/>}</div>
+
+            {editMode
+                ? <ProfileDataForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/>
+                : <ProfileData profile={props.profile} isOwner={props.isOwner} onEditMode={onEditMode}/>
+            }
+
         </div>
     );
 }
 
 export const Contact = (props: ContactPropsType) => {
-    return <div className={s.contact}><b>{props.contactTitle}</b>: {props.contactValue}</div>
+    return <div className={style.contact}><b>{props.contactTitle}</b>: {props.contactValue}</div>
 }
 
 export const ProfileData = (props: ProfileDataPropsType) => {
     return (
-        <div>
+        <>
             {props.isOwner && <div>
-                <button onClick={props.goToEditMode}>EDIT</button>
+                <button onClick={props.onEditMode}>EDIT</button>
             </div>}
-            <div>
-                <b>Full name</b>: {props.profile.fullName}
-            </div>
-            <div>
-                <b>Looking for a job</b>: {props.profile.lookingForAJob ? "Yes" : "No"}
-            </div>
+            <div><b>Full name: </b> {props.profile.fullName}</div>
+            <div><b>About Me: </b> {props.profile.aboutMe}</div>
+            <div><b>Looking for a job: </b> {props.profile.lookingForAJob ? "Yes" : "No"}</div>
+
             {props.profile.lookingForAJob &&
             <div>
-                <b>My professional skills</b>: {props.profile.lookingForAJobDescription}
-            </div>
-            }
+                <b>My professional skills: </b>
+                <span>{props.profile.lookingForAJobDescription}</span>
+            </div>}
+
             <div>
-                <b>About Me</b>: {props.profile.aboutMe}
-            </div>
-            <div>
-                <b>Contacts</b>: {Object.keys(props.profile.contacts).map(key => {
+                <b>Contacts: </b> {Object.keys(props.profile.contacts).map(key => {
                 return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts.github}/>
             })}
             </div>
-        </div>
+        </>
     )
 }
 

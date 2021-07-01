@@ -1,11 +1,10 @@
 import React from "react";
 import s from "./MyPosts.module.css";
-import Post from "./Post/Post";
+import {Post} from "./Post/Post";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators";
 import {Textarea} from "../../common/formControls/FormsControls";
 import {MyPostsPropsType} from "./MyPostsContainer";
-
 
 export const MyPosts = React.memo((props: MyPostsPropsType) => {
     const postsElements = props.posts.map(post =>
@@ -42,4 +41,3 @@ const AddNewPostForm: React.FC<InjectedFormProps<MyPostsPropsType>> = (props) =>
     )
 }
 const AddNewPostFormRedux = reduxForm<MyPostsPropsType>({form: "ProfileAddNewPostForm"})(AddNewPostForm)
-

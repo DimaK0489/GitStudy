@@ -5,7 +5,7 @@ import {Textarea} from "../../common/formControls/FormsControls";
 import {maxLengthCreator, required} from "../../../utils/validators";
 
 const maxLength70 = maxLengthCreator(70)
-const AddMessageForm: React.FC<InjectedFormProps<DialogsPropsType>> = (props) => {
+const AddMessageForm: React.FC<InjectedFormProps<DialogsPropsType>> = React.memo((props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
@@ -20,5 +20,5 @@ const AddMessageForm: React.FC<InjectedFormProps<DialogsPropsType>> = (props) =>
             </div>
         </form>
     )
-}
+})
 export const AddMessageFormRedux = reduxForm<DialogsPropsType>({form: "dialogAddMessageForm"})(AddMessageForm)

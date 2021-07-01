@@ -1,17 +1,13 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
+import {ProfileStatusType} from "../../../redux/Types";
 
-type ProfileStatusType = {
-    status: string
-    updateStatus: (status: string) => void
-}
-
-export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
+export const ProfileStatusWithHooks = React.memo((props: ProfileStatusType) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>("")
 
     useEffect(() => {
         setStatus(props.status)
-    },[props.status])
+    }, [props.status])
 
     const activatedMode = () => {
         setEditMode(true)
@@ -24,7 +20,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
         setStatus(e.currentTarget.value);
     }
     return (
-        <div>
+        <>
             {!editMode &&
             <div>
                 <b>Status: </b><span onDoubleClick={activatedMode}>{props.status || "-----"}</span>
@@ -38,9 +34,9 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
                        value={status}/>
             </div>
             }
-        </div>
+        </>
     )
-}
+})
 
 
 

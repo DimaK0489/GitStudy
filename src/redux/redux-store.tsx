@@ -7,7 +7,7 @@ import thunkMiddleware from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
 import {appReducer} from "./app-reducer";
 
-export type ReduxStateType = ReturnType<typeof rootReducer>
+export type AppStateType = ReturnType<typeof rootReducer>
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,

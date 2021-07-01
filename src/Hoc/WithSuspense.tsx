@@ -1,6 +1,6 @@
-import {ReduxStateType} from "../redux/redux-store";
+import {AppStateType} from "../redux/redux-store";
 import React, {ComponentType} from "react";
-import { Preloader } from "../components/common/preloader/preloder";
+import { Preloader } from "../components/common/preloader/Preloder";
 import { Suspense } from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
@@ -9,7 +9,7 @@ type MapStatePropsForRedirectType = {
     isAuth: boolean
 };
 
-let mapStateToPropsForRedirect = (state: ReduxStateType): MapStatePropsForRedirectType => {
+let mapStateToPropsForRedirect = (state: AppStateType): MapStatePropsForRedirectType => {
     return {
         isAuth: state.auth.isAuth
     }
