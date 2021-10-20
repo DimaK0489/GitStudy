@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/GitStudy/static/css/main.e6036a27.chunk.css",
+    "main.js": "/GitStudy/static/js/main.766e697a.chunk.js",
+    "main.js.map": "/GitStudy/static/js/main.766e697a.chunk.js.map",
+    "runtime-main.js": "/GitStudy/static/js/runtime-main.934c12d6.js",
+    "runtime-main.js.map": "/GitStudy/static/js/runtime-main.934c12d6.js.map",
+    "static/js/2.13aa2f87.chunk.js": "/GitStudy/static/js/2.13aa2f87.chunk.js",
+    "static/js/2.13aa2f87.chunk.js.map": "/GitStudy/static/js/2.13aa2f87.chunk.js.map",
+    "index.html": "/GitStudy/index.html",
+    "static/css/main.e6036a27.chunk.css.map": "/GitStudy/static/css/main.e6036a27.chunk.css.map",
+    "static/js/2.13aa2f87.chunk.js.LICENSE.txt": "/GitStudy/static/js/2.13aa2f87.chunk.js.LICENSE.txt",
+    "static/media/preloader.d7642499.svg": "/GitStudy/static/media/preloader.d7642499.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.934c12d6.js",
+    "static/js/2.13aa2f87.chunk.js",
+    "static/css/main.e6036a27.chunk.css",
+    "static/js/main.766e697a.chunk.js"
+  ]
+}
